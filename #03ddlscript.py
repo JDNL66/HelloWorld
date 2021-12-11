@@ -3,7 +3,7 @@ import sys
 
 # Hauptprogramm / Main  / DNL in Githup
 def main():
-    print("hallo")
+    print("hallo Version in VSCode geändert")
     if len(sys.argv) < 2:
         in_dsn = 'daten\STBPE\script\INSTALL_DB.TXT'
     else: 
