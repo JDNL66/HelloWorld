@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import sys
 
-# Hauptprogramm / Main
+# Hauptprogramm / Main  / DNL in Githup
 def main():
     print("hallo")
     if len(sys.argv) < 2:
