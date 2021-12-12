@@ -5,14 +5,14 @@ import sys
 def main():
     print("hallo Version in VSCode geändert noch eine Version  ")
     if len(sys.argv) < 2:
-        in_dsn = 'daten\STBPE\script\INSTALL_DB.TXT'
+        in_dsn = 'B:\python\daten\STBPE\script\INSTALL_DB.TXT'
     else: 
         # irgendwie muss ein \ am Ende eines Strings doppelt gemacht werden
-        in_dsn = 'daten\STBPE\script\\' + sys.argv[1]
+        in_dsn = 'B:\python\daten\STBPE\script\\' + sys.argv[1]
     # fobj_in   = open("daten\script.txt")
     fobj_in   = open(in_dsn)
     fobj_out  = open("output.txt","w")
-    directory = "daten\\"
+    directory = "B:\python\daten\\"
     i = 1
     rc = init()
     for line in fobj_in:
@@ -31,7 +31,6 @@ def main():
                 i = i + 1
             fddl_in.close()
     fobj_in.close()
-    
     fobj_out.close()
 
 def init():

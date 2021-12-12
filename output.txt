@@ -1,0 +1,2401 @@
+    1: --// TABLE STBPE_FEHLERATTRIBUT_T01 *********************************
+    2: -- Kurzbezeichnung : FinrepZL
+    3: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede		
+    4: -- DBA-EW          : Jürgen Denkler
+    5: -- Erstell-Datum   : 29.11.2016
+    6: --*******************************************************************
+    7: --
+    8:    CREATE TABLE FINREP_2801.STBPE_FEHLERATTRIBUT_T01 (
+    9:      RZBK NUMBER(4 , 0) NOT NULL,
+   10:      NR_IN_GLIEDERUNG NUMBER(4 , 0) NOT NULL,
+   11:      DAT_STICHTAG DATE NOT NULL,
+   12:      TXT_OID CHAR(28 CHAR) NOT NULL,
+   13:      NR_LFD NUMBER(1 , 0) NOT NULL,
+   14:      BEZ_TABELLE CHAR(32 CHAR),
+   15:      BEZ_TECHFELD CHAR(32 CHAR),
+   16:      BEZ_FACHFELD CHAR(50 CHAR),
+   17:      IHT_WERT CHAR(50 CHAR),
+   18:      IHT_WERTNEU CHAR(50 CHAR)
+   19:     )
+   23:     ;
+   24: --// TABLE STBPE_FEHLERPROTOKOLL_T01 ********************************
+   25: -- Kurzbezeichnung : FinrepZL
+   26: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede		
+   27: -- DBA-EW          : Jürgen Denkler
+   28: -- Erstell-Datum   : 29.11.2016
+   29: --*******************************************************************
+   30: --
+   31:    CREATE TABLE FINREP_2801.STBPE_FEHLERPROTOKOLL_T01 (
+   32:      RZBK NUMBER(4 , 0) NOT NULL,
+   33:      DAT_STICHTAG DATE NOT NULL,
+   34:      NR_IN_GLIEDERUNG NUMBER(4 , 0) NOT NULL,
+   35:      TXT_OID CHAR(28 CHAR) NOT NULL,
+   36:      SL_PROTOKOLLIERUNGSLEVEL NUMBER(2 , 0) NOT NULL,
+   37:      SL_HERKUNFT NUMBER(3 , 0) NOT NULL,
+   38:      SL_FEHLERTYP CHAR(7 CHAR) NOT NULL,
+   39:      BEZ_VERARBSCHRITT CHAR(50 CHAR) NOT NULL,
+   40:      TXT_FEHLERTEXT VARCHAR2(400 CHAR) NOT NULL,
+   41:      KZ_SICHTBARKEIT NUMBER(1 , 0) NOT NULL,
+   42:      ID_GESCHAEFT CHAR(30 CHAR),
+   43:      NR_PERSON NUMBER(10 , 0),
+   44:      BETR_VOLUMEN NUMBER(15 , 2),
+   45:      BEZ_TABELLE CHAR(32 CHAR),
+   46:      BEZ_PROGRAMM CHAR(32 CHAR) NOT NULL,
+   47:      TSP_FEHLER TIMESTAMP NOT NULL
+   48:     )
+   52:     ;
+   53: --// TABLE STBPE_GESCHAEFT_ABG_T01 **********************************
+   54: -- Kurzbezeichnung : FinrepZL
+   55: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede		
+   56: -- DBA-EW          : Jürgen Denkler
+   57: -- Erstell-Datum   : 29.11.2016
+   58: --*******************************************************************
+   59: --
+   60:    CREATE TABLE FINREP_2801.STBPE_GESCHAEFT_ABG_T01 (
+   61:      RZBK NUMBER(4 , 0) NOT NULL,
+   62:      DAT_STICHTAG DATE NOT NULL,
+   63:      NR_IN_GLIEDERUNG NUMBER(4 , 0) NOT NULL,
+   64:      ID_GESCHAEFT CHAR(30 CHAR) NOT NULL,
+   65:      SL_ZINSGEBUEHRENTYP NUMBER(3 , 0) NOT NULL,
+   66:      NR_LFD NUMBER(5 , 0) NOT NULL,
+   67:      NR_KONTO NUMBER(10 , 0),
+   68:      NR_IBAN CHAR(34 CHAR),
+   69:      ID_KT_TEIL1 NUMBER(12 , 0),
+   70:      ID_KT_TEIL2 NUMBER(14 , 0),
+   71:      NR_PERSON NUMBER(10 , 0),
+   72:      SL_SPARTE NUMBER(2 , 0),
+   73:      SL_KONTOART CHAR(1 CHAR),
+   74:      NR_GAB NUMBER(3 , 0),
+   75:      NR_PRODUKT NUMBER(8 , 0),
+   76:      NR_KONTOGUV NUMBER(10 , 0),
+   77:      NR_KONTORAP NUMBER(10 , 0),
+   78:      SL_WAE CHAR(3 CHAR),
+   79:      BETR_SALDO NUMBER(18 , 2),
+   80:      DAT_ZINSTERMINALT NUMBER(8 , 0),
+   81:      DAT_ZINSTERMIN NUMBER(8 , 0),
+   82:      PZ_ZINSSATZAKTUELL NUMBER(8 , 5),
+   83:      BETR_ABGRENZUNG NUMBER(18 , 2),
+   84:      BETR_ABGRENZUNGWAE NUMBER(18 , 2),
+   85:      SL_ABGRENZUNGSART CHAR(1 CHAR),
+   86:      SL_BALANCEART CHAR(1 CHAR),
+   87:      BETR_ABZUGGUV NUMBER(18 , 2)
+   88:     )
+   92:     ;
+   93: --// TABLE STBPE_GESCHAEFT_DERIVAT_T01 ******************************
+   94: -- Kurzbezeichnung : FinrepZL
+   95: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede		
+   96: -- DBA-EW          : Jürgen Denkler
+   97: -- Erstell-Datum   : 29.11.2016
+   98: --*******************************************************************
+   99: --
+  100:    CREATE TABLE FINREP_2801.STBPE_GESCHAEFT_DERIVAT_T01 (
+  101:      RZBK NUMBER(4 , 0) NOT NULL,
+  102:      DAT_STICHTAG DATE NOT NULL,
+  103:      NR_IN_GLIEDERUNG NUMBER(4 , 0) NOT NULL,
+  104:      ID_GESCHAEFT CHAR(30 CHAR) NOT NULL,
+  105:      SL_DERIVATTYP NUMBER(3 , 0),
+  106:      SL_DERIVATGSFART CHAR(2 CHAR),
+  107:      DAT_VERTRAGSABSCHLUSS DATE,
+  108:      DAT_VAL_BIS NUMBER(8 , 0),
+  109:      SL_WAE_ANKAUF CHAR(3 CHAR),
+  110:      BETR_ANKAUF NUMBER(18 , 2),
+  111:      SL_WAE_VERKAUF CHAR(3 CHAR),
+  112:      BETR_VERKAUF NUMBER(18 , 2),
+  113:      BETR_KONTRAKT NUMBER(18 , 2),
+  114:      ANZ_KONTRAKT NUMBER(13 , 0),
+  115:      PZ_ZINSSATZ NUMBER(8 , 5),
+  116:      PZ_ZINSSATZBANK NUMBER(8 , 5),
+  117:      SL_ZINSMETHODE CHAR(1 CHAR),
+  118:      SL_ZINSMETHODEBANK CHAR(1 CHAR),
+  119:      SL_ZINS NUMBER(1 , 0),
+  120:      SL_ZINSBANK NUMBER(1 , 0),
+  121:      SL_WAE_KP CHAR(3 CHAR),
+  122:      BETR_KAPITAL NUMBER(18 , 2),
+  123:      BETR_EINDECKUNG NUMBER(18 , 2),
+  124:      NR_KENNUNG CHAR(20 CHAR),
+  125:      NR_WKN CHAR(6 CHAR),
+  126:      NR_KENNUNGUNDERLYING CHAR(20 CHAR),
+  127:      NR_WKNUNDERLYING CHAR(6 CHAR),
+  128:      DAT_VON_UNDERLYING DATE,
+  129:      DAT_BIS_UNDERLYING DATE,
+  130:      BETR_STRIKE NUMBER(18 , 6),
+  131:      BETR_OPTEINSTANDSPREIS NUMBER(18 , 6),
+  132:      SL_NOTIERUNG NUMBER(1 , 0),
+  133:      BETR_OPTPRAEMIE NUMBER(18 , 2),
+  134:      SL_WAE_OPTPRAEMIE CHAR(3 CHAR),
+  135:      NR_NETTING VARCHAR2(20 CHAR),
+  136:      SL_HEDGING CHAR(1 CHAR)DEFAULT '0' NOT NULL
+  137:     )
+  141:     ;
+  142: --// TABLE STBPE_GESCHAEFT_STAMM_T01 ********************************
+  143: -- Kurzbezeichnung : FinrepZL
+  144: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede		
+  145: -- DBA-EW          : Jürgen Denkler
+  146: -- Erstell-Datum   : 29.11.2016
+  147: --*******************************************************************
+  148: -- neues Feld KZ_SK_NEGATIVZINSEN" NUMBER(1 , 0) 21.10.2021
+  149:    CREATE TABLE FINREP_2801.STBPE_GESCHAEFT_STAMM_T01 (
+  150:      RZBK NUMBER(4 , 0) NOT NULL,
+  151:      DAT_STICHTAG DATE NOT NULL,
+  152:      NR_IN_GLIEDERUNG NUMBER(4 , 0) NOT NULL,
+  153:      ID_GESCHAEFT CHAR(30 CHAR) NOT NULL,
+  154:      SL_TYP NUMBER(1 , 0) NOT NULL,
+  155:      SL_HERKUNFT CHAR(8 CHAR),
+  156:      NR_GESCHAEFTSART NUMBER(3 , 0),
+  157:      RZBK1 NUMBER(4 , 0),
+  158:      DAT_STICHTAG1 DATE,
+  159:      NR_IN_GLIEDERUNG1 NUMBER(4 , 0),
+  160:      NR_PERSON NUMBER(10 , 0),
+  161:      NR_KONTO NUMBER(10 , 0),
+  162:      SL_WAE CHAR(3 CHAR) DEFAULT 'EUR' NOT NULL,
+  163:      NR_EGBILS NUMBER(4 , 0),
+  164:      NR_GAB NUMBER(3 , 0),
+  165:      SL_KREDITNEHMERSTATISTIK NUMBER(5 , 0),
+  166:      SL_BUCHZUORDNUNG CHAR(1 CHAR) DEFAULT 'A' NOT NULL,
+  167:      DAT_BEGINN DATE,
+  168:      DAT_LAUFZEITENDE NUMBER(8 , 0),
+  169:      DAT_KUENDIGUNG DATE,
+  170:      BETR_KAPITALSALDO NUMBER(18 , 2),
+  171:      BETR_BUCHWERT NUMBER(18 , 2),
+  172:      BETR_EWB_RUECKSTELLUNG NUMBER(18 , 2),
+  173:      BETR_ABSCHREIBUNG NUMBER(18 , 2),
+  174:      SL_TYP_ABSCHREIBUNG CHAR(1 CHAR),
+  175:      BETR_EXT_ZUSAGEOFFEN NUMBER(18 , 2),
+  176:      SL_UNWIDERRUFLICH NUMBER(1 , 0),
+  177:      KZ_STUNDUNG CHAR(1 CHAR),
+  178:      KZ_PROBEZEIT CHAR(1 CHAR),
+  179:      SL_STUNDUNGSSCHWERPKT NUMBER(2 , 0),
+  180:      BETR_PWBERGEBNIS NUMBER(18 , 2),
+  181:      BETR_340FERGEBNIS NUMBER(18 , 2),
+  182:      DAT_AB_STUNDUNGSMASS DATE,
+  183:      DAT_END_PROBEZEIT DATE,
+  184:      BETR_340F_GEBUNDEN NUMBER(18 , 2),
+  185:      BETR_340F_FREI NUMBER(18 , 2),
+  186:      BETR_EINBUCHUNG NUMBER(18 , 2),
+  187:      NR_NOSTROKONTO CHAR(35 CHAR),
+  188:      BETR_ZUSCHREIBUNG NUMBER(18 , 2),
+  189:      KZ_SK_NEGATIVZINSEN NUMBER(1 , 0)     
+  190:     )
+  194:     ;
+  195: --// TABLE STBPE_GESCHAEFT_UMSATZ_T01 *******************************
+  196: -- Kurzbezeichnung : FinrepZL
+  197: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede		
+  198: -- DBA-EW          : Jürgen Denkler
+  199: -- Erstell-Datum   : 29.11.2016
+  200: --*******************************************************************
+  201: --
+  202:    CREATE TABLE FINREP_2801.STBPE_GESCHAEFT_UMSATZ_T01 (
+  203:      RZBK NUMBER(4 , 0) NOT NULL,
+  204:      NR_IN_GLIEDERUNG NUMBER(4 , 0) NOT NULL,
+  205:      ID_GESCHAEFT CHAR(30 CHAR) NOT NULL,
+  206:      DAT_BUCHUNG DATE NOT NULL,
+  207:      DAT_UMSATZ DATE NOT NULL,
+  208:      ZT_UMSATZ CHAR(10 CHAR) NOT NULL,
+  209:      NR_LFD NUMBER(3 , 0) NOT NULL,
+  210:      ID_BUCHUNG CHAR(33 CHAR) NOT NULL,
+  211:      NR_L_LIEFERUNG NUMBER(7 , 0) NOT NULL,
+  212:      NR_PRIMANOTE NUMBER(5 , 0),
+  213:      BEZ_PGM CHAR(8 CHAR),
+  214:      SL_UMSATZSTATUS NUMBER(1 , 0),
+  215:      SL_UMS_SACHKTO NUMBER(1 , 0),
+  216:      SL_ART_UMS_SACHKTO NUMBER(1 , 0),
+  217:      SL_ART_BEWEGUNGORI NUMBER(3 , 0),
+  218:      SL_ART_BEWEGUNGERM NUMBER(3 , 0),
+  219:      BETR_UMSATZ NUMBER(18 , 2),
+  220:      NR_KTO NUMBER(10 , 0),
+  221:      NR_KT_URSPRUNG NUMBER(10 , 0),
+  222:      KZ_BUCHUNGSID CHAR(1 CHAR),
+  223:      ID_BG_URSPRUNG CHAR(33 CHAR),
+  224:      KZ_STORNO CHAR(1 CHAR),
+  225:      ID_GSF_VERURSACHORI CHAR(30 CHAR),
+  226:      ID_GSF_VERURSACHERM CHAR(30 CHAR),
+  227:      NR_EGBILS NUMBER(4 , 0),
+  228:      NR_GAB NUMBER(3 , 0),
+  229:      NR_PERSON NUMBER(10 , 0),
+  230:      ID_SACHKTOVERDICHTUNG CHAR(33 CHAR),
+  231:      SL_UMSATZTYP NUMBER(1 , 0),
+  232:      TSP_LIEFERUNG TIMESTAMP,
+  233:      LG_VERWENDUNGSZWECK NUMBER(4 , 0),
+  234:      TXT_VERWENDUNGSZWECK CHAR(108 CHAR),
+  235:      SL_ART_FACHLICHORI NUMBER(3 , 0),
+  236:      KZ_SK_NEGATIVZINSEN NUMBER(1 , 0)  
+  237:     )
+  241:     ;
+  242: --// TABLE STBPE_GESCHAEFT_WP_T01 ***********************************
+  243: -- Kurzbezeichnung : FinrepZL
+  244: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede		
+  245: -- DBA-EW          : Jürgen Denkler
+  246: -- Erstell-Datum   : 29.11.2016
+  247: --*******************************************************************
+  248: --
+  249:    CREATE TABLE FINREP_2801.STBPE_GESCHAEFT_WP_T01 (
+  250:      RZBK NUMBER(4 , 0) NOT NULL,
+  251:      DAT_STICHTAG DATE NOT NULL,
+  252:      NR_IN_GLIEDERUNG NUMBER(4 , 0) NOT NULL,
+  253:      ID_GESCHAEFT CHAR(30 CHAR) NOT NULL,
+  254:      NR_WKN CHAR(6 CHAR),
+  255:      NR_DEPOT CHAR(20 CHAR),
+  256:      BETR_ZINSABGRENZUNG NUMBER(18 , 2),
+  257:      ANZ_STUECK NUMBER(18 , 3),
+  258:      SL_ART_WERTMINDERUNG CHAR(1 CHAR)
+  259:     )
+  263:     ;
+  264: --// TABLE STBPE_KONTOGRUPPE_T01 ************************************
+  265: -- Kurzbezeichnung : FinrepZL
+  266: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede		
+  267: -- DBA-EW          : Jürgen Denkler
+  268: -- Erstell-Datum   : 29.11.2016
+  269: --*******************************************************************
+  270: --
+  271:    CREATE TABLE FINREP_2801.STBPE_KONTOGRUPPE_T01 (
+  272:      RZBK NUMBER(4 , 0) NOT NULL,
+  273:      DAT_STICHTAG DATE NOT NULL,
+  274:      NR_IN_GLIEDERUNG NUMBER(4 , 0) NOT NULL,
+  275:      ID_GESCHAEFT CHAR(30 CHAR) NOT NULL,
+  276:      SL_ART_KONTOGRUPPE NUMBER(3 , 0) NOT NULL,
+  277:      RZBK1 NUMBER(4 , 0) NOT NULL,
+  278:      DAT_STICHTAG1 DATE NOT NULL,
+  279:      NR_IN_GLIEDERUNG1 NUMBER(4 , 0) NOT NULL,
+  280:      ID_GESCHAEFT1 CHAR(30 CHAR) NOT NULL,
+  281:      NR_KONTOGRUPPE NUMBER(5 , 0),
+  282:      KZ_HAUPTKONTO CHAR(1 CHAR)
+  283:     )
+  287:     ;
+  288: --// TABLE STBPE_KREDITZUSAGE_T01 ***********************************
+  289: -- Kurzbezeichnung : FinrepZL
+  290: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede		
+  291: -- DBA-EW          : Jürgen Denkler
+  292: -- Erstell-Datum   : 29.11.2016
+  293: --*******************************************************************
+  294: --
+  295:    CREATE TABLE FINREP_2801.STBPE_KREDITZUSAGE_T01 (
+  296:      RZBK NUMBER(4 , 0) NOT NULL,
+  297:      DAT_STICHTAG DATE NOT NULL,
+  298:      NR_IN_GLIEDERUNG NUMBER(4 , 0) NOT NULL,
+  299:      ID_GESCHAEFT CHAR(30 CHAR) NOT NULL,
+  300:      ID_ZUSAGE VARCHAR2(50 CHAR) NOT NULL,
+  301:      SL_ART_ZUSAGE CHAR(1 CHAR),
+  302:      BETR_EXT_ZUSAGEOFFEN NUMBER(18 , 2),
+  303:      SL_WAE CHAR(3 CHAR),
+  304:      DAT_BEGINN DATE,
+  305:      DAT_LAUFZEITENDE DATE,
+  306:      SL_UNWIDERRUFLICH NUMBER(1 , 0),
+  307:      KZ_ENTHALTEN CHAR(1 CHAR)
+  308:     )
+  312:     ;
+  313: --// TABLE STBPE_MANDANT_T01 ****************************************
+  314: -- Kurzbezeichnung : FinrepZL
+  315: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede		
+  316: -- DBA-EW          : Jürgen Denkler
+  317: -- Erstell-Datum   : 29.11.2016
+  318: --*******************************************************************
+  319: --
+  320:    CREATE TABLE FINREP_2801.STBPE_MANDANT_T01 (
+  321:      RZBK NUMBER(4 , 0) NOT NULL,
+  322:      DAT_STICHTAG DATE NOT NULL,
+  323:      NR_IN_GLIEDERUNG NUMBER(4 , 0) NOT NULL,
+  324:      BEZ_MANDANT CHAR(60 CHAR),
+  325:      ID_GENO CHAR(3 CHAR) NOT NULL,
+  326:      SL_LAND NUMBER(3 , 0) NOT NULL,
+  327:      SL_BUNDESLAND NUMBER(2 , 0),
+  328:      SL_FINREPMHIERARCHIE NUMBER(1 , 0)
+  329:     )
+  333:     ;
+  334: --// TABLE STBPE_PERSON_T01 *****************************************
+  335: -- Kurzbezeichnung : FinrepZL
+  336: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede		
+  337: -- DBA-EW          : Jürgen Denkler
+  338: -- Erstell-Datum   : 29.11.2016
+  339: --*******************************************************************
+  340: --
+  341:    CREATE TABLE FINREP_2801.STBPE_PERSON_T01 (
+  342:      RZBK NUMBER(4 , 0) NOT NULL,
+  343:      DAT_STICHTAG DATE NOT NULL,
+  344:      NR_IN_GLIEDERUNG NUMBER(4 , 0) NOT NULL,
+  345:      NR_PERSON NUMBER(10 , 0) NOT NULL,
+  346:      BEZ_KURZNAME CHAR(60 CHAR),
+  347:      SL_LAND NUMBER(3 , 0),
+  348:      SL_INT_RATING NUMBER(2 , 0),
+  349:      ANZ_TG_VERZUG NUMBER(5 , 0),
+  350:      KZ_NPE CHAR(1 CHAR),
+  351:      KZ_NPESTUNDUNG CHAR(1 CHAR),
+  352:      KZ_KMU CHAR(1 CHAR),
+  353:      SL_RFM_AUSPR NUMBER(3 , 0),
+  354:      SL_WZG NUMBER(5 , 0),
+  355:      SL_KWG_EINORDNUNG NUMBER(2 , 0),
+  356:      SL_TRG_ORGA NUMBER(2 , 0),
+  357:      SL_WZG_BUBA CHAR(3 CHAR),
+  358:      SL_WZG_NACE CHAR(3 CHAR),
+  359:      SL_SEKTOR NUMBER(2 , 0),
+  360: 	 KZ_WIEDERG CHAR(1) DEFAULT 'N',
+  361: 	 KZ_WOHLV CHAR(1) DEFAULT 'N',
+  362: 	 DAT_END_WOHLV DATE
+  364:     )
+  368:     ;
+  369: --// TABLE STBPE_PERSON_UNREGELMAES_T01 *****************************
+  370: -- Kurzbezeichnung : Finrep ZL
+  371: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede
+  372: -- DBA-EW          : Jürgen Denkler
+  373: -- Erstell-Datum   : 12.12.2016
+  374: --*******************************************************************
+  375: --
+  376:    CREATE TABLE FINREP_2801.STBPE_PERSON_UNREGELMAES_T01 (
+  377:      RZBK NUMBER(4 , 0) NOT NULL,
+  378:      NR_IN_GLIEDERUNG NUMBER(4 , 0) NOT NULL,
+  379:      NR_PERSON NUMBER(10 , 0) NOT NULL,
+  380:      DAT_BEGINN DATE NOT NULL,
+  381:      SL_TYP_UNREGELMAESSIG NUMBER(2 , 0) NOT NULL,
+  382:      DAT_ENDE DATE
+  383:     )
+  387:     ;
+  388: --// TABLE STBPE_SICHERHEIT_T01 *************************************
+  389: -- Kurzbezeichnung : FinrepZL
+  390: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede		
+  391: -- DBA-EW          : Jürgen Denkler
+  392: -- Erstell-Datum   : 29.11.2016
+  393: --*******************************************************************
+  394: --
+  395:    CREATE TABLE FINREP_2801.STBPE_SICHERHEIT_T01 (
+  396:      RZBK NUMBER(4 , 0) NOT NULL,
+  397:      DAT_STICHTAG DATE NOT NULL,
+  398:      NR_IN_GLIEDERUNG NUMBER(4 , 0) NOT NULL,
+  399:      NR_SICHERHEIT CHAR(20 CHAR) NOT NULL,
+  400:      SL_SICHERUNGSTYP NUMBER(4 , 0),
+  401:      DAT_BEGINN DATE,
+  402:      DAT_LAUFZEITENDE DATE,
+  403:      BETR_SICHERHEIT NUMBER(18 , 2),
+  404:      SL_WAE CHAR(3 CHAR)
+  405:     )
+  409:     ;
+  410: --// TABLE STBPE_VERTSICHERHEIT_T01 *********************************
+  411: -- Kurzbezeichnung : FinrepZL
+  412: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede		
+  413: -- DBA-EW          : Jürgen Denkler
+  414: -- Erstell-Datum   : 29.11.2016
+  415: --*******************************************************************
+  416: --
+  417:    CREATE TABLE FINREP_2801.STBPE_VERTSICHERHEIT_T01 (
+  418:      RZBK NUMBER(4 , 0) NOT NULL,
+  419:      DAT_STICHTAG DATE NOT NULL,
+  420:      NR_IN_GLIEDERUNG NUMBER(4 , 0) NOT NULL,
+  421:      NR_SICHERHEIT CHAR(20 CHAR) NOT NULL,
+  422:      RZBK1 NUMBER(4 , 0) NOT NULL,
+  423:      DAT_STICHTAG1 DATE NOT NULL,
+  424:      NR_IN_GLIEDERUNG1 NUMBER(4 , 0) NOT NULL,
+  425:      ID_GESCHAEFT CHAR(30 CHAR) NOT NULL,
+  426:      BETR_SI_VERTEILT NUMBER(18 , 2)
+  427:     )
+  431:     ;
+  432: --// TABLE STBPE_WP_STAMM_T01 ***************************************
+  433: -- Kurzbezeichnung : FinrepZL
+  434: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede		
+  435: -- DBA-EW          : Jürgen Denkler
+  436: -- Erstell-Datum   : 29.11.2016
+  437: --*******************************************************************
+  438: --
+  439:    CREATE TABLE FINREP_2801.STBPE_WP_STAMM_T01 (
+  440:      RZBK NUMBER(4 , 0) NOT NULL,
+  441:      DAT_STICHTAG DATE NOT NULL,
+  442:      NR_IN_GLIEDERUNG NUMBER(4 , 0) NOT NULL,
+  443:      NR_ISIN CHAR(12 CHAR) NOT NULL,
+  444:      NR_WKN CHAR(6 CHAR) NOT NULL,
+  445:      SL_BOERSENFAEHIGKEIT CHAR(1 CHAR),
+  446:      KZ_GEWAEHRLEISTUNGSGEBER CHAR(1 CHAR),
+  447:      DAT_ZINSLAUFENDE DATE,
+  448:      DAT_ZINSLAUFBEGINN DATE,
+  449:      DAT_EMISSION DATE,
+  450:      SL_ART_ZINSSATZ CHAR(1 CHAR),
+  451:      NR_KURSDIVISOR NUMBER(12 , 7),
+  452:      NR_EMITTENT NUMBER(6 , 0),
+  453:      SL_WAE_DEPOT CHAR(3 CHAR),
+  454:      DAT_LZT_TILGUNG DATE,
+  455:      NR_ZINSRECHNUNGSMETHODE NUMBER(2 , 0),
+  456:      SL_KUNDENSYSTEMATIK CHAR(4 CHAR),
+  457:      SL_RANGFORDERUNG CHAR(1 CHAR),
+  458:      KZ_PREISNOTIERUNG CHAR(1 CHAR),
+  459:      SL_INSTRUMENTART1 CHAR(3 CHAR),
+  460:      SL_INSTRUMENTART2 CHAR(4 CHAR),
+  461:      SL_INSTRUMENTART3 CHAR(4 CHAR),
+  462:      SL_INSTRUMENTART4 CHAR(4 CHAR),
+  463:      SL_INSTRUMENTART5 CHAR(4 CHAR),
+  464:      SL_INSTRUMENTART6 CHAR(4 CHAR),
+  465:      SL_INSTRUMENTART7 CHAR(4 CHAR),
+  466:      NR_GARANT NUMBER(14 , 0),
+  467:      KZ_SCHULDVERSCHREIBUNGGED CHAR(1 CHAR)
+  468:     )
+  472:     ;
+  473: --// TABLE STBPE_GESCHAEFT_ABRECHNG_T01 *****************************
+  474: -- Kurzbezeichnung : FinrepZL
+  475: -- Entw/Modellierer: Moritz Mersmann / Elke Ohmstede		
+  476: -- DBA-EW          : Jürgen Denkler
+  477: -- Erstell-Datum   : 25.11.2020
+  478: --*******************************************************************
+  479: --
+  480: CREATE TABLE FINREP_2801.STBPE_GESCHAEFT_ABRECHNG_T01 (
+  481: 		RZBK NUMBER(4 , 0) NOT NULL,
+  482: 		DAT_STICHTAG DATE NOT NULL,
+  483: 		NR_IN_GLIEDERUNG NUMBER(4 , 0) NOT NULL,
+  484: 		ID_GESCHAEFT CHAR(30 CHAR) NOT NULL,
+  485: 		SL_ZINSGEBUEHRENTYP NUMBER(3 , 0) NOT NULL,
+  486: 		NR_LFD NUMBER(5 , 0) NOT NULL,
+  487: 		NR_KONTO NUMBER(10 , 0),
+  488: 		NR_IBAN CHAR(34 CHAR),
+  489: 		ID_KT_TEIL1 NUMBER(12 , 0),
+  490: 		ID_KT_TEIL2 NUMBER(14 , 0),
+  491: 		NR_PERSON NUMBER(10 , 0),
+  492: 		SL_SPARTE NUMBER(2 , 0),
+  493: 		SL_KONTOART CHAR(1 CHAR),
+  494: 		NR_GAB NUMBER(3 , 0),
+  495: 		NR_PRODUKT NUMBER(8 , 0),
+  496: 		NR_KONTOGUV NUMBER(10 , 0),
+  497: 		NR_KONTORAP NUMBER(10 , 0),
+  498: 		SL_WAE CHAR(3 CHAR),
+  499: 		BETR_SALDO NUMBER(18 , 2),
+  500: 		DAT_ZINSTERMINALT NUMBER(8 , 0),
+  501: 		DAT_ZINSTERMIN NUMBER(8 , 0),
+  502: 		PZ_ZINSSATZAKTUELL NUMBER(8 , 5),
+  503: 		BETR_ABRECHNUNG NUMBER(18 , 2),
+  504: 		BETR_ABRECHNUNGWAE NUMBER(18 , 2),
+  505: 		SL_BALANCEART CHAR(1 CHAR),
+  506: 		KZ_AVAL CHAR(1 CHAR),
+  507: 		NR_EGBILS NUMBER(4 , 0),
+  508: 		KZ_STORNO CHAR(1 CHAR),
+  509: 		KZ_SK_NEGATIVZINSEN NUMBER(1 , 0)  
+  510: 	)
+  514:     ;
+  515: --// INDEX STBPE_FEHLERATTRIBUT_I0101 *******************************
+  516: -- Kurzbezeichnung : FinrepZL
+  517: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede		
+  518: -- DBA-EW          : Jürgen Denkler
+  519: -- Erstell-Datum   : 29.11.2016
+  520: --*******************************************************************
+  521: --
+  522:    CREATE UNIQUE INDEX FINREP_2801.STBPE_FEHLERATTRIBUT_I0101
+  523:     ON FINREP_2801.STBPE_FEHLERATTRIBUT_T01
+  524:     (RZBK  ASC,
+  525:       DAT_STICHTAG  ASC,
+  526:       NR_IN_GLIEDERUNG  ASC,
+  527:       TXT_OID  ASC,
+  528:       NR_LFD  ASC)
+  530:     ;
+  531: --// INDEX STBPE_FEHLERATTRIBUT_I0102 *******************************
+  532: -- Kurzbezeichnung : FinrepZL
+  533: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede
+  534: -- DBA-EW          : Jürgen Denkler
+  535: -- Erstell-Datum   : 06.12.2016
+  536: --*******************************************************************
+  537: --
+  538:    CREATE INDEX FINREP_2801.STBPE_FEHLERATTRIBUT_I0102
+  539:     ON FINREP_2801.STBPE_FEHLERATTRIBUT_T01
+  540:     (DAT_STICHTAG  ASC)
+  542:     ;
+  543: --// INDEX STBPE_FEHLERATTRIBUT_T01P_IDX ****************************
+  544: -- Kurzbezeichnung : FinrepZL
+  545: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede		
+  546: -- DBA-EW          : Jürgen Denkler
+  547: -- Erstell-Datum   : 29.11.2016
+  548: --*******************************************************************
+  549: --
+  550:    CREATE INDEX FINREP_2801.STBPE_FEHLERATTRIBUT_T01P_IDX ON
+  551:     FINREP_2801.STBPE_FEHLERATTRIBUT_T01 (RZBK,NR_IN_GLIEDERUNG,DAT_STICHTAG,TXT_OID,NR_LFD);
+  552: --// INDEX STBPE_FEHLERPROTOKOLL_I0101 ******************************
+  553: -- Kurzbezeichnung : FinrepZL
+  554: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede		
+  555: -- DBA-EW          : Jürgen Denkler
+  556: -- Erstell-Datum   : 29.11.2016
+  557: --*******************************************************************
+  558: --
+  559:    CREATE UNIQUE INDEX FINREP_2801.STBPE_FEHLERPROTOKOLL_I0101
+  560:     ON FINREP_2801.STBPE_FEHLERPROTOKOLL_T01
+  561:     (RZBK  ASC,
+  562:       DAT_STICHTAG  ASC,
+  563:       NR_IN_GLIEDERUNG  ASC,
+  564:       TXT_OID  ASC)
+  566:     ;
+  567: --// INDEX STBPE_FEHLERPROTOKOLL_I0102 ******************************
+  568: -- Kurzbezeichnung : FinrepZL
+  569: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede
+  570: -- DBA-EW          : Jürgen Denkler
+  571: -- Erstell-Datum   : 06.12.2016
+  572: --*******************************************************************
+  573: --
+  574:    CREATE INDEX FINREP_2801.STBPE_FEHLERPROTOKOLL_I0102
+  575:     ON FINREP_2801.STBPE_FEHLERPROTOKOLL_T01
+  576:     (DAT_STICHTAG  ASC)
+  578:     ;
+  579: --// INDEX STBPE_GESCHAEFT_ABG_I0101 ********************************
+  580: -- Kurzbezeichnung : FinrepZL
+  581: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede		
+  582: -- DBA-EW          : Jürgen Denkler
+  583: -- Erstell-Datum   : 29.11.2016
+  584: --*******************************************************************
+  585: --
+  586:    CREATE UNIQUE INDEX FINREP_2801.STBPE_GESCHAEFT_ABG_I0101
+  587:     ON FINREP_2801.STBPE_GESCHAEFT_ABG_T01
+  588:     (RZBK  ASC,
+  589:       DAT_STICHTAG  ASC,
+  590:       NR_IN_GLIEDERUNG  ASC,
+  591:       ID_GESCHAEFT  ASC,
+  592:       SL_ZINSGEBUEHRENTYP  ASC,
+  593:       NR_LFD  ASC)
+  595:     ;
+  596: --// INDEX STBPE_GESCHAEFT_ABG_I0102 ********************************
+  597: -- Kurzbezeichnung : FinrepZL
+  598: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede
+  599: -- DBA-EW          : Jürgen Denkler
+  600: -- Erstell-Datum   : 06.12.2016
+  601: --*******************************************************************
+  602: --
+  603:    CREATE INDEX FINREP_2801.STBPE_GESCHAEFT_ABG_I0102
+  604:     ON FINREP_2801.STBPE_GESCHAEFT_ABG_T01
+  605:     (DAT_STICHTAG  ASC)
+  607:     ;
+  608: --// INDEX STBPE_GESCHAEFT_DERIVAT_I0101 ****************************
+  609: -- Kurzbezeichnung : FinrepZL
+  610: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede		
+  611: -- DBA-EW          : Jürgen Denkler
+  612: -- Erstell-Datum   : 29.11.2016
+  613: --*******************************************************************
+  614: --
+  615:    CREATE UNIQUE INDEX FINREP_2801.STBPE_GESCHAEFT_DERIVAT_I0101
+  616:     ON FINREP_2801.STBPE_GESCHAEFT_DERIVAT_T01
+  617:     (RZBK  ASC,
+  618:       DAT_STICHTAG  ASC,
+  619:       NR_IN_GLIEDERUNG  ASC,
+  620:       ID_GESCHAEFT  ASC)
+  622:     ;
+  623: --// INDEX STBPE_GESCHAEFT_DERIVAT_I0102 ****************************
+  624: -- Kurzbezeichnung : FinrepZL
+  625: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede
+  626: -- DBA-EW          : Jürgen Denkler
+  627: -- Erstell-Datum   : 06.12.2016
+  628: --*******************************************************************
+  629: --
+  630:    CREATE INDEX FINREP_2801.STBPE_GESCHAEFT_DERIVAT_I0102
+  631:     ON FINREP_2801.STBPE_GESCHAEFT_DERIVAT_T01
+  632:     (DAT_STICHTAG  ASC)
+  634:     ;
+  635: --// INDEX STBPE_GESCHAEFT_STAMM_I0101 ******************************
+  636: -- Kurzbezeichnung : FinrepZL
+  637: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede		
+  638: -- DBA-EW          : Jürgen Denkler
+  639: -- Erstell-Datum   : 29.11.2016
+  640: --*******************************************************************
+  641: --
+  642:    CREATE UNIQUE INDEX FINREP_2801.STBPE_GESCHAEFT_STAMM_I0101
+  643:     ON FINREP_2801.STBPE_GESCHAEFT_STAMM_T01
+  644:     (RZBK  ASC,
+  645:       DAT_STICHTAG  ASC,
+  646:       NR_IN_GLIEDERUNG  ASC,
+  647:       ID_GESCHAEFT  ASC)
+  649:     ;
+  650: --// INDEX STBPE_GESCHAEFT_STAMM_I0104 ******************************
+  651: -- Kurzbezeichnung : FinrepZL
+  652: -- Entw/Modellierer: Ceyhun Pekis		
+  653: -- DBA-EW          : Jürgen Denkler
+  654: -- Erstell-Datum   : 02.02.2021
+  655: -- Index löst stbpe_geschaeft_stamm_i0102 ab, erweitert um nr_person
+  656: --*******************************************************************
+  657: --
+  658:    CREATE INDEX FINREP_2801.STBPE_GESCHAEFT_STAMM_I0104
+  659:     ON FINREP_2801.STBPE_GESCHAEFT_STAMM_T01
+  660:     (RZBK1  ASC,
+  661:       DAT_STICHTAG1  ASC,
+  662:       NR_IN_GLIEDERUNG1  ASC,
+  663:       NR_PERSON ASC)
+  665:     ;
+  666: --// INDEX STBPE_GESCHAEFT_STAMM_I0103 ******************************
+  667: -- Kurzbezeichnung : FinrepZL
+  668: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede
+  669: -- DBA-EW          : Jürgen Denkler
+  670: -- Erstell-Datum   : 06.12.2016
+  671: --*******************************************************************
+  672: --
+  673:    CREATE INDEX FINREP_2801.STBPE_GESCHAEFT_STAMM_I0103
+  674:     ON FINREP_2801.STBPE_GESCHAEFT_STAMM_T01
+  675:     (DAT_STICHTAG  ASC,
+  676:       NR_EGBILS  ASC)
+  678:     ;
+  679: --// INDEX STBPE_GESCHAEFT_STAMM_I0105 ******************************
+  680: -- Kurzbezeichnung : FinrepZL
+  681: -- Entw/Modellierer: Moritz Mersmann / Robin Hidajat		
+  682: -- DBA-EW          : Jürgen Denkler
+  683: -- Erstell-Datum   : 02.12.2021
+  684: -- Index löst Performanceproblem in Monatsendeverarbeitung
+  685: --*******************************************************************
+  686: --
+  687:    CREATE INDEX FINREP_2801.STBPE_GESCHAEFT_STAMM_I0105
+  688:     ON FINREP_2801.STBPE_GESCHAEFT_STAMM_T01
+  689:      (LTRIM(TRIM(ID_GESCHAEFT), 0) ASC, 
+  690:       NR_IN_GLIEDERUNG ASC,
+  691:       RZBK ASC,
+  692:       DAT_STICHTAG ASC) 
+  694:     ;
+  696: --// INDEX STBPE_GESCHAEFT_UMSATZ_I0101 *****************************
+  697: -- Kurzbezeichnung : FinrepZL
+  698: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede
+  699: -- DBA-EW          : Jürgen Denkler
+  700: -- Erstell-Datum   : 06.12.2016
+  701: --*******************************************************************
+  702: --
+  703:    CREATE UNIQUE INDEX FINREP_2801.STBPE_GESCHAEFT_UMSATZ_I0101
+  704:     ON FINREP_2801.STBPE_GESCHAEFT_UMSATZ_T01
+  705:     (RZBK  ASC,
+  706:       NR_IN_GLIEDERUNG  ASC,
+  707:       ID_GESCHAEFT  ASC,
+  708:       DAT_BUCHUNG  ASC,
+  709:       DAT_UMSATZ  ASC,
+  710:       ZT_UMSATZ  ASC,
+  711:       NR_LFD  ASC,
+  712:       ID_BUCHUNG  ASC,
+  713:       NR_L_LIEFERUNG  ASC)
+  715:     ;
+  716: --// INDEX STBPE_GESCHAEFT_UMSATZ_I0102 *****************************
+  717: -- Kurzbezeichnung : FinrepZL
+  718: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede
+  719: -- DBA-EW          : Jürgen Denkler
+  720: -- Erstell-Datum   : 06.12.2016
+  721: --*******************************************************************
+  722: --
+  723:    CREATE INDEX FINREP_2801.STBPE_GESCHAEFT_UMSATZ_I0102
+  724:     ON FINREP_2801.STBPE_GESCHAEFT_UMSATZ_T01
+  725:     (ID_GESCHAEFT  ASC,
+  726:       DAT_BUCHUNG  ASC,
+  727:       DAT_UMSATZ  ASC,
+  728:       ZT_UMSATZ  ASC,
+  729:       NR_LFD  ASC)
+  731:     ;
+  732: --// INDEX STBPE_GESCHAEFT_UMSATZ_I0103 *****************************
+  733: -- Kurzbezeichnung : FinrepZL
+  734: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede
+  735: -- DBA-EW          : Jürgen Denkler
+  736: -- Erstell-Datum   : 06.12.2016
+  737: --*******************************************************************
+  738: --
+  739:    CREATE INDEX FINREP_2801.STBPE_GESCHAEFT_UMSATZ_I0103
+  740:     ON FINREP_2801.STBPE_GESCHAEFT_UMSATZ_T01
+  741:     (ID_GSF_VERURSACHERM  ASC,
+  742:       DAT_BUCHUNG  ASC,
+  743:       NR_EGBILS  ASC,
+  744:       SL_ART_BEWEGUNGERM  ASC,
+  745:       RZBK  ASC)
+  747:     ;
+  748: --// INDEX STBPE_GESCHAEFT_WP_I0101 *********************************
+  749: -- Kurzbezeichnung : FinrepZL
+  750: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede		
+  751: -- DBA-EW          : Jürgen Denkler
+  752: -- Erstell-Datum   : 29.11.2016
+  753: --*******************************************************************
+  754: --
+  755:    CREATE UNIQUE INDEX FINREP_2801.STBPE_GESCHAEFT_WP_I0101
+  756:     ON FINREP_2801.STBPE_GESCHAEFT_WP_T01
+  757:     (RZBK  ASC,
+  758:       DAT_STICHTAG  ASC,
+  759:       NR_IN_GLIEDERUNG  ASC,
+  760:       ID_GESCHAEFT  ASC)
+  762:     ;
+  763: --// INDEX STBPE_GESCHAEFT_WP_I0102 *********************************
+  764: -- Kurzbezeichnung : FinrepZL
+  765: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede
+  766: -- DBA-EW          : Jürgen Denkler
+  767: -- Erstell-Datum   : 06.12.2016
+  768: --*******************************************************************
+  769: --
+  770:    CREATE INDEX FINREP_2801.STBPE_GESCHAEFT_WP_I0102
+  771:     ON FINREP_2801.STBPE_GESCHAEFT_WP_T01
+  772:     (DAT_STICHTAG  ASC)
+  774:     ;
+  775: --// INDEX STBPE_KONTOGRUPPE_I0101 **********************************
+  776: -- Kurzbezeichnung : FinrepZL
+  777: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede		
+  778: -- DBA-EW          : Jürgen Denkler
+  779: -- Erstell-Datum   : 29.11.2016
+  780: --*******************************************************************
+  781: --
+  782:    CREATE UNIQUE INDEX FINREP_2801.STBPE_KONTOGRUPPE_I0101
+  783:     ON FINREP_2801.STBPE_KONTOGRUPPE_T01
+  784:     (RZBK  ASC,
+  785:       DAT_STICHTAG  ASC,
+  786:       NR_IN_GLIEDERUNG  ASC,
+  787:       ID_GESCHAEFT  ASC,
+  788:       SL_ART_KONTOGRUPPE  ASC)
+  790:     ;
+  791: --// INDEX STBPE_KONTOGRUPPE_I0102 **********************************
+  792: -- Kurzbezeichnung : FinrepZL
+  793: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede		
+  794: -- DBA-EW          : Jürgen Denkler
+  795: -- Erstell-Datum   : 29.11.2016
+  796: --*******************************************************************
+  797: --
+  798:    CREATE INDEX FINREP_2801.STBPE_KONTOGRUPPE_I0102
+  799:     ON FINREP_2801.STBPE_KONTOGRUPPE_T01
+  800:     (RZBK1  ASC,
+  801:       DAT_STICHTAG1  ASC,
+  802:       NR_IN_GLIEDERUNG1  ASC,
+  803:       ID_GESCHAEFT1  ASC)
+  805:     ;
+  806: --// INDEX STBPE_KONTOGRUPPE_I0103 **********************************
+  807: -- Kurzbezeichnung : FinrepZL
+  808: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede
+  809: -- DBA-EW          : Jürgen Denkler
+  810: -- Erstell-Datum   : 06.12.2016
+  811: --*******************************************************************
+  812: --
+  813:    CREATE INDEX FINREP_2801.STBPE_KONTOGRUPPE_I0103
+  814:     ON FINREP_2801.STBPE_KONTOGRUPPE_T01
+  815:     (DAT_STICHTAG  ASC)
+  817:     ;
+  818: --// INDEX STBPE_KREDITZUSAGE_I0101 *********************************
+  819: -- Kurzbezeichnung : FinrepZL
+  820: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede		
+  821: -- DBA-EW          : Jürgen Denkler
+  822: -- Erstell-Datum   : 29.11.2016
+  823: --*******************************************************************
+  824: --
+  825:    CREATE UNIQUE INDEX FINREP_2801.STBPE_KREDITZUSAGE_I0101
+  826:     ON FINREP_2801.STBPE_KREDITZUSAGE_T01
+  827:     (RZBK  ASC,
+  828:       DAT_STICHTAG  ASC,
+  829:       NR_IN_GLIEDERUNG  ASC,
+  830:       ID_GESCHAEFT  ASC,
+  831:       ID_ZUSAGE  ASC)
+  833:     ;
+  834: --// INDEX STBPE_KREDITZUSAGE_I0102 *********************************
+  835: -- Kurzbezeichnung : FinrepZL
+  836: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede
+  837: -- DBA-EW          : Jürgen Denkler
+  838: -- Erstell-Datum   : 06.12.2016
+  839: --*******************************************************************
+  840: --
+  841:    CREATE INDEX FINREP_2801.STBPE_KREDITZUSAGE_I0102
+  842:     ON FINREP_2801.STBPE_KREDITZUSAGE_T01
+  843:     (DAT_STICHTAG  ASC)
+  845:     ;
+  846: --// INDEX STBPE_MANDANT_I0101 **************************************
+  847: -- Kurzbezeichnung : FinrepZL
+  848: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede		
+  849: -- DBA-EW          : Jürgen Denkler
+  850: -- Erstell-Datum   : 29.11.2016
+  851: --*******************************************************************
+  852: --
+  853:    CREATE UNIQUE INDEX FINREP_2801.STBPE_MANDANT_I0101
+  854:     ON FINREP_2801.STBPE_MANDANT_T01
+  855:     (RZBK  ASC,
+  856:       DAT_STICHTAG  ASC,
+  857:       NR_IN_GLIEDERUNG  ASC)
+  859:     ;
+  860: --// INDEX STBPE_PERSON_I0101 ***************************************
+  861: -- Kurzbezeichnung : FinrepZL
+  862: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede		
+  863: -- DBA-EW          : Jürgen Denkler
+  864: -- Erstell-Datum   : 29.11.2016
+  865: --*******************************************************************
+  866: --
+  867:    CREATE UNIQUE INDEX FINREP_2801.STBPE_PERSON_I0101
+  868:     ON FINREP_2801.STBPE_PERSON_T01
+  869:     (RZBK  ASC,
+  870:       DAT_STICHTAG  ASC,
+  871:       NR_IN_GLIEDERUNG  ASC,
+  872:       NR_PERSON  ASC)
+  874:     ;
+  875: --// INDEX STBPE_PERSON_I0102 ***************************************
+  876: -- Kurzbezeichnung : FinrepZL
+  877: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede
+  878: -- DBA-EW          : Jürgen Denkler
+  879: -- Erstell-Datum   : 06.12.2016
+  880: --*******************************************************************
+  881: --
+  882:    CREATE INDEX FINREP_2801.STBPE_PERSON_I0102
+  883:     ON FINREP_2801.STBPE_PERSON_T01
+  884:     (DAT_STICHTAG  ASC)
+  886:     ;
+  887: --// INDEX STBPE_PERSON_UNREGELMAES_I0101 ***************************
+  888: -- Kurzbezeichnung : Finrep ZL
+  889: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede
+  890: -- DBA-EW          : Jürgen Denkler
+  891: -- Erstell-Datum   : 12.12.2016
+  892: --*******************************************************************
+  893: --
+  894:    CREATE UNIQUE INDEX FINREP_2801.STBPE_PERSON_UNREGELMAES_I0101
+  895:     ON FINREP_2801.STBPE_PERSON_UNREGELMAES_T01
+  896:     (RZBK  ASC,
+  897:       NR_IN_GLIEDERUNG  ASC,
+  898:       NR_PERSON  ASC,
+  899:       DAT_BEGINN  ASC,
+  900:       SL_TYP_UNREGELMAESSIG  ASC)
+  902:     ;
+  903: --// INDEX STBPE_PERSON_UNREGELMAES_I0102 ***************************
+  904: -- Kurzbezeichnung : FinrepZL
+  905: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede
+  906: -- DBA-EW          : Jürgen Denkler
+  907: -- Erstell-Datum   : 06.12.2016
+  908: --*******************************************************************
+  909: --
+  910:    CREATE INDEX FINREP_2801.STBPE_PERSON_UNREGELMAES_I0102
+  911:     ON FINREP_2801.STBPE_PERSON_UNREGELMAES_T01
+  912:     (DAT_BEGINN  ASC,
+  913:       DAT_ENDE  ASC)
+  915:     ;
+  916: --// INDEX STBPE_SICHERHEIT_I0101 ***********************************
+  917: -- Kurzbezeichnung : FinrepZL
+  918: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede		
+  919: -- DBA-EW          : Jürgen Denkler
+  920: -- Erstell-Datum   : 29.11.2016
+  921: --*******************************************************************
+  922: --
+  923:    CREATE UNIQUE INDEX FINREP_2801.STBPE_SICHERHEIT_I0101
+  924:     ON FINREP_2801.STBPE_SICHERHEIT_T01
+  925:     (RZBK  ASC,
+  926:       DAT_STICHTAG  ASC,
+  927:       NR_IN_GLIEDERUNG  ASC,
+  928:       NR_SICHERHEIT  ASC)
+  930:     ;
+  931: --// INDEX STBPE_SICHERHEIT_I0102 ***********************************
+  932: -- Kurzbezeichnung : FinrepZL
+  933: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede
+  934: -- DBA-EW          : Jürgen Denkler
+  935: -- Erstell-Datum   : 06.12.2016
+  936: --*******************************************************************
+  937: --
+  938:    CREATE INDEX FINREP_2801.STBPE_SICHERHEIT_I0102
+  939:     ON FINREP_2801.STBPE_SICHERHEIT_T01
+  940:     (DAT_STICHTAG  ASC)
+  942:     ;
+  943: --// INDEX STBPE_VERTSICHERHEIT_I0101 *******************************
+  944: -- Kurzbezeichnung : FinrepZL
+  945: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede		
+  946: -- DBA-EW          : Jürgen Denkler
+  947: -- Erstell-Datum   : 29.11.2016
+  948: --*******************************************************************
+  949: --
+  950:    CREATE UNIQUE INDEX FINREP_2801.STBPE_VERTSICHERHEIT_I0101
+  951:     ON FINREP_2801.STBPE_VERTSICHERHEIT_T01
+  952:     (RZBK  ASC,
+  953:       DAT_STICHTAG  ASC,
+  954:       NR_IN_GLIEDERUNG  ASC,
+  955:       NR_SICHERHEIT  ASC,
+  956:       RZBK1  ASC,
+  957:       DAT_STICHTAG1  ASC,
+  958:       NR_IN_GLIEDERUNG1  ASC,
+  959:       ID_GESCHAEFT  ASC)
+  961:     ;
+  962: --// INDEX STBPE_VERTSICHERHEIT_I0102 *******************************
+  963: -- Kurzbezeichnung : FinrepZL
+  964: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede		
+  965: -- DBA-EW          : Jürgen Denkler
+  966: -- Erstell-Datum   : 29.11.2016
+  967: --*******************************************************************
+  968: --
+  969:    CREATE INDEX FINREP_2801.STBPE_VERTSICHERHEIT_I0102
+  970:     ON FINREP_2801.STBPE_VERTSICHERHEIT_T01
+  971:     (RZBK1  ASC,
+  972:       DAT_STICHTAG1  ASC,
+  973:       NR_IN_GLIEDERUNG1  ASC,
+  974:       ID_GESCHAEFT  ASC)
+  976:     ;
+  977: --// INDEX STBPE_VERTSICHERHEIT_I0103 *******************************
+  978: -- Kurzbezeichnung : FinrepZL
+  979: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede
+  980: -- DBA-EW          : Jürgen Denkler
+  981: -- Erstell-Datum   : 06.12.2016
+  982: --*******************************************************************
+  983: --
+  984:    CREATE INDEX FINREP_2801.STBPE_VERTSICHERHEIT_I0103
+  985:     ON FINREP_2801.STBPE_VERTSICHERHEIT_T01
+  986:     (DAT_STICHTAG  ASC)
+  988:     ;
+  989: --// INDEX STBPE_WP_STAMM_I0101 *************************************
+  990: -- Kurzbezeichnung : FinrepZL
+  991: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede		
+  992: -- DBA-EW          : Jürgen Denkler
+  993: -- Erstell-Datum   : 29.11.2016
+  994: --*******************************************************************
+  995: --
+  996:    CREATE UNIQUE INDEX FINREP_2801.STBPE_WP_STAMM_I0101
+  997:     ON FINREP_2801.STBPE_WP_STAMM_T01
+  998:     (RZBK  ASC,
+  999:       DAT_STICHTAG  ASC,
+ 1000:       NR_IN_GLIEDERUNG  ASC,
+ 1001:       NR_ISIN  ASC)
+ 1003:     ;
+ 1004: --// INDEX STBPE_WP_STAMM_I0102 *************************************
+ 1005: -- Kurzbezeichnung : FinrepZL
+ 1006: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede
+ 1007: -- DBA-EW          : Jürgen Denkler
+ 1008: -- Erstell-Datum   : 06.12.2016
+ 1009: --*******************************************************************
+ 1010: --
+ 1011:    CREATE INDEX FINREP_2801.STBPE_WP_STAMM_I0102
+ 1012:     ON FINREP_2801.STBPE_WP_STAMM_T01
+ 1013:     (DAT_STICHTAG  ASC)
+ 1015:     ;
+ 1016: --// INDEX STBPE_GESCHAEFT_ABRECHNG_I0101 ***************************
+ 1017: -- Kurzbezeichnung : FinrepZL
+ 1018: -- Entw/Modellierer: Mersmann / Elke Ohmstede		
+ 1019: -- DBA-EW          : Jürgen Denkler
+ 1020: -- Erstell-Datum   : 25.11.2020
+ 1021: --*******************************************************************
+ 1022: --
+ 1024: CREATE UNIQUE INDEX FINREP_2801.STBPE_GESCHAEFT_ABRECHNG_I0101
+ 1025: 	ON FINREP_2801.STBPE_GESCHAEFT_ABRECHNG_T01
+ 1026: 	( RZBK		ASC,
+ 1027: 	  DAT_STICHTAG		ASC,
+ 1028: 	  NR_IN_GLIEDERUNG		ASC,
+ 1029: 	  ID_GESCHAEFT		ASC,
+ 1030: 	  SL_ZINSGEBUEHRENTYP		ASC,
+ 1031: 	  NR_LFD		ASC)
+ 1033: 	; 1034: --*******************************************************************
+ 1035: -- Kurzbezeichnung : FinrepZL
+ 1036: -- Entw/Modellierer: Keller/Ohmstede
+ 1037: -- DBA-EW          : Jürgen Denkler
+ 1038: -- Erstell-Datum   : 27.10.2016
+ 1039: -- hier werden die Grants für das Erstellen der rzbk-bezogenen Views
+ 1040: --     auf übergreifende Tabellen durchgeführt.
+ 1041: -- Diese Grants wurden manuell erstellt und müssen nach Neugenerierung
+ 1042: --     des INSTALL_DB.TXT wieder dort eingetragen werden.
+ 1043: --*******************************************************************
+ 1044: --
+ 1045:    GRANT SELECT on FINREP_UEG.STBPE_LAND_T01 to FINREP_2801 with grant option; 
+ 1046:    GRANT SELECT on FINREP_UEG.STBPE_BUNDESLAND_T01 to FINREP_2801 with grant option; 
+ 1047:    GRANT SELECT on FINREP_UEG.STBPE_WAEHRUNGSKURS_T01 to FINREP_2801 with grant option; 
+ 1049: --// VIEW STBPE_BUNDESLAND_V0101 ************************************
+ 1050: -- Kurzbezeichnung : FinrepZL
+ 1051: -- Entw/Modellierer: Keller/Ohmstede
+ 1052: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 1053: -- Erstell-Datum   : 22.07.2016
+ 1054: --*******************************************************************
+ 1055: --
+ 1056:    CREATE OR REPLACE VIEW FINREP_2801.STBPE_BUNDESLAND_V0101 (
+ 1057:       DAT_STICHTAG
+ 1058:      ,SL_BUNDESLAND
+ 1059:      ,BEZ_BUNDESLAND
+ 1060:     ) AS Select 
+ 1061:       DAT_STICHTAG
+ 1062:      ,SL_BUNDESLAND
+ 1063:      ,BEZ_BUNDESLAND
+ 1064:     From  FINREP_UEG.STBPE_BUNDESLAND_T01;
+ 1065: --// VIEW STBPE_FEHLERATTRIBUT_V0101 ********************************
+ 1066: -- Kurzbezeichnung : FinrepZL
+ 1067: -- Entw/Modellierer: Keller/Ohmstede
+ 1068: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 1069: -- Erstell-Datum   : 22.07.2016
+ 1070: --*******************************************************************
+ 1071: --
+ 1072:    CREATE OR REPLACE VIEW FINREP_2801.STBPE_FEHLERATTRIBUT_V0101 (
+ 1073:       RZBK
+ 1074:      ,NR_IN_GLIEDERUNG
+ 1075:      ,DAT_STICHTAG
+ 1076:      ,TXT_OID
+ 1077:      ,NR_LFD
+ 1078:      ,BEZ_TABELLE
+ 1079:      ,BEZ_TECHFELD
+ 1080:      ,BEZ_FACHFELD
+ 1081:      ,IHT_WERT
+ 1082:      ,IHT_WERTNEU
+ 1083:     ) AS Select 
+ 1084:       RZBK
+ 1085:      ,NR_IN_GLIEDERUNG
+ 1086:      ,DAT_STICHTAG
+ 1087:      ,TXT_OID
+ 1088:      ,NR_LFD
+ 1089:      ,BEZ_TABELLE
+ 1090:      ,BEZ_TECHFELD
+ 1091:      ,BEZ_FACHFELD
+ 1092:      ,IHT_WERT
+ 1093:      ,IHT_WERTNEU
+ 1094:     From  FINREP_2801.STBPE_FEHLERATTRIBUT_T01;
+ 1095: --// VIEW STBPE_FEHLERPROTOKOLL_V0101 *******************************
+ 1096: -- Kurzbezeichnung : FinrepZL
+ 1097: -- Entw/Modellierer: Keller/Ohmstede
+ 1098: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 1099: -- Erstell-Datum   : 22.07.2016
+ 1100: --*******************************************************************
+ 1101: --
+ 1102:    CREATE OR REPLACE VIEW FINREP_2801.STBPE_FEHLERPROTOKOLL_V0101 (
+ 1103:       RZBK
+ 1104:      ,DAT_STICHTAG
+ 1105:      ,NR_IN_GLIEDERUNG
+ 1106:      ,TXT_OID
+ 1107:      ,SL_PROTOKOLLIERUNGSLEVEL
+ 1108:      ,SL_HERKUNFT
+ 1109:      ,SL_FEHLERTYP
+ 1110:      ,BEZ_VERARBSCHRITT
+ 1111:      ,TXT_FEHLERTEXT
+ 1112:      ,KZ_SICHTBARKEIT
+ 1113:      ,ID_GESCHAEFT
+ 1114:      ,NR_PERSON
+ 1115:      ,BETR_VOLUMEN
+ 1116:      ,BEZ_TABELLE
+ 1117:      ,BEZ_PROGRAMM
+ 1118:      ,TSP_FEHLER
+ 1119:     ) AS Select 
+ 1120:       RZBK
+ 1121:      ,DAT_STICHTAG
+ 1122:      ,NR_IN_GLIEDERUNG
+ 1123:      ,TXT_OID
+ 1124:      ,SL_PROTOKOLLIERUNGSLEVEL
+ 1125:      ,SL_HERKUNFT
+ 1126:      ,SL_FEHLERTYP
+ 1127:      ,BEZ_VERARBSCHRITT
+ 1128:      ,TXT_FEHLERTEXT
+ 1129:      ,KZ_SICHTBARKEIT
+ 1130:      ,ID_GESCHAEFT
+ 1131:      ,NR_PERSON
+ 1132:      ,BETR_VOLUMEN
+ 1133:      ,BEZ_TABELLE
+ 1134:      ,BEZ_PROGRAMM
+ 1135:      ,TSP_FEHLER
+ 1136:     From  FINREP_2801.STBPE_FEHLERPROTOKOLL_T01;
+ 1137: --// VIEW STBPE_GESCHAEFT_ABG_V0101 *********************************
+ 1138: -- Kurzbezeichnung : FinrepZL
+ 1139: -- Entw/Modellierer: Keller/Ohmstede
+ 1140: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 1141: -- Erstell-Datum   : 05.08.2016
+ 1142: --*******************************************************************
+ 1143: --
+ 1144:    CREATE OR REPLACE VIEW FINREP_2801.STBPE_GESCHAEFT_ABG_V0101 (
+ 1145:       RZBK
+ 1146:      ,DAT_STICHTAG
+ 1147:      ,NR_IN_GLIEDERUNG
+ 1148:      ,ID_GESCHAEFT
+ 1149:      ,SL_ZINSGEBUEHRENTYP
+ 1150:      ,NR_LFD
+ 1151:      ,NR_KONTO
+ 1152:      ,NR_IBAN
+ 1153:      ,ID_KT_TEIL1
+ 1154:      ,ID_KT_TEIL2
+ 1155:      ,NR_PERSON
+ 1156:      ,SL_SPARTE
+ 1157:      ,SL_KONTOART
+ 1158:      ,NR_GAB
+ 1159:      ,NR_PRODUKT
+ 1160:      ,NR_KONTOGUV
+ 1161:      ,NR_KONTORAP
+ 1162:      ,SL_WAE
+ 1163:      ,BETR_SALDO
+ 1164:      ,DAT_ZINSTERMINALT
+ 1165:      ,DAT_ZINSTERMIN
+ 1166:      ,PZ_ZINSSATZAKTUELL
+ 1167:      ,BETR_ABGRENZUNG
+ 1168:      ,BETR_ABGRENZUNGWAE
+ 1169:      ,SL_ABGRENZUNGSART
+ 1170:      ,SL_BALANCEART
+ 1171:      ,BETR_ABZUGGUV
+ 1172:     ) AS Select 
+ 1173:       RZBK
+ 1174:      ,DAT_STICHTAG
+ 1175:      ,NR_IN_GLIEDERUNG
+ 1176:      ,ID_GESCHAEFT
+ 1177:      ,SL_ZINSGEBUEHRENTYP
+ 1178:      ,NR_LFD
+ 1179:      ,NR_KONTO
+ 1180:      ,NR_IBAN
+ 1181:      ,ID_KT_TEIL1
+ 1182:      ,ID_KT_TEIL2
+ 1183:      ,NR_PERSON
+ 1184:      ,SL_SPARTE
+ 1185:      ,SL_KONTOART
+ 1186:      ,NR_GAB
+ 1187:      ,NR_PRODUKT
+ 1188:      ,NR_KONTOGUV
+ 1189:      ,NR_KONTORAP
+ 1190:      ,SL_WAE
+ 1191:      ,BETR_SALDO
+ 1192:      ,DAT_ZINSTERMINALT
+ 1193:      ,DAT_ZINSTERMIN
+ 1194:      ,PZ_ZINSSATZAKTUELL
+ 1195:      ,BETR_ABGRENZUNG
+ 1196:      ,BETR_ABGRENZUNGWAE
+ 1197:      ,SL_ABGRENZUNGSART
+ 1198:      ,SL_BALANCEART
+ 1199:      ,BETR_ABZUGGUV
+ 1200:     From  FINREP_2801.STBPE_GESCHAEFT_ABG_T01;
+ 1201: --// VIEW STBPE_GESCHAEFT_DERIVAT_V0101 *****************************
+ 1202: -- Kurzbezeichnung : FinrepZL
+ 1203: -- Entw/Modellierer: Keller/Ohmstede
+ 1204: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 1205: -- Erstell-Datum   : 22.07.2016
+ 1206: -- Erweitert       : 13.08.2019 / Jürgen Denkler
+ 1207: --*******************************************************************
+ 1208: --
+ 1209:    CREATE OR REPLACE VIEW FINREP_2801.STBPE_GESCHAEFT_DERIVAT_V0101 (
+ 1210:       RZBK
+ 1211:      ,DAT_STICHTAG
+ 1212:      ,NR_IN_GLIEDERUNG
+ 1213:      ,ID_GESCHAEFT
+ 1214:      ,SL_DERIVATTYP
+ 1215:      ,SL_DERIVATGSFART
+ 1216:      ,DAT_VERTRAGSABSCHLUSS
+ 1217:      ,DAT_VAL_BIS
+ 1218:      ,SL_WAE_ANKAUF
+ 1219:      ,BETR_ANKAUF
+ 1220:      ,SL_WAE_VERKAUF
+ 1221:      ,BETR_VERKAUF
+ 1222:      ,BETR_KONTRAKT
+ 1223:      ,ANZ_KONTRAKT
+ 1224:      ,PZ_ZINSSATZ
+ 1225:      ,PZ_ZINSSATZBANK
+ 1226:      ,SL_ZINSMETHODE
+ 1227:      ,SL_ZINSMETHODEBANK
+ 1228:      ,SL_ZINS
+ 1229:      ,SL_ZINSBANK
+ 1230:      ,SL_WAE_KP
+ 1231:      ,BETR_KAPITAL
+ 1232:      ,BETR_EINDECKUNG
+ 1233:      ,NR_KENNUNG
+ 1234:      ,NR_WKN
+ 1235:      ,NR_KENNUNGUNDERLYING
+ 1236:      ,NR_WKNUNDERLYING
+ 1237:      ,DAT_VON_UNDERLYING
+ 1238:      ,DAT_BIS_UNDERLYING
+ 1239:      ,BETR_STRIKE
+ 1240:      ,BETR_OPTEINSTANDSPREIS
+ 1241:      ,SL_NOTIERUNG
+ 1242:      ,BETR_OPTPRAEMIE
+ 1243:      ,SL_WAE_OPTPRAEMIE
+ 1244:      ,NR_NETTING
+ 1245:      ,SL_HEDGING
+ 1246:     ) AS Select 
+ 1247:       RZBK
+ 1248:      ,DAT_STICHTAG
+ 1249:      ,NR_IN_GLIEDERUNG
+ 1250:      ,ID_GESCHAEFT
+ 1251:      ,SL_DERIVATTYP
+ 1252:      ,SL_DERIVATGSFART
+ 1253:      ,DAT_VERTRAGSABSCHLUSS
+ 1254:      ,DAT_VAL_BIS
+ 1255:      ,SL_WAE_ANKAUF
+ 1256:      ,BETR_ANKAUF
+ 1257:      ,SL_WAE_VERKAUF
+ 1258:      ,BETR_VERKAUF
+ 1259:      ,BETR_KONTRAKT
+ 1260:      ,ANZ_KONTRAKT
+ 1261:      ,PZ_ZINSSATZ
+ 1262:      ,PZ_ZINSSATZBANK
+ 1263:      ,SL_ZINSMETHODE
+ 1264:      ,SL_ZINSMETHODEBANK
+ 1265:      ,SL_ZINS
+ 1266:      ,SL_ZINSBANK
+ 1267:      ,SL_WAE_KP
+ 1268:      ,BETR_KAPITAL
+ 1269:      ,BETR_EINDECKUNG
+ 1270:      ,NR_KENNUNG
+ 1271:      ,NR_WKN
+ 1272:      ,NR_KENNUNGUNDERLYING
+ 1273:      ,NR_WKNUNDERLYING
+ 1274:      ,DAT_VON_UNDERLYING
+ 1275:      ,DAT_BIS_UNDERLYING
+ 1276:      ,BETR_STRIKE
+ 1277:      ,BETR_OPTEINSTANDSPREIS
+ 1278:      ,SL_NOTIERUNG
+ 1279:      ,BETR_OPTPRAEMIE
+ 1280:      ,SL_WAE_OPTPRAEMIE
+ 1281:      ,NR_NETTING
+ 1282:      ,SL_HEDGING
+ 1283:     From  FINREP_2801.STBPE_GESCHAEFT_DERIVAT_T01;
+ 1284: --// VIEW STBPE_GESCHAEFT_STAMM_V0101 *******************************
+ 1285: -- Kurzbezeichnung : FinrepZL
+ 1286: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede
+ 1287: -- DBA-EW          : Jürgen Denkler
+ 1288: -- Erstell-Datum   : 09.11.2016
+ 1289: --*******************************************************************
+ 1290: --
+ 1291:    CREATE OR REPLACE VIEW FINREP_2801.STBPE_GESCHAEFT_STAMM_V0101 (
+ 1292:       RZBK
+ 1293:      ,DAT_STICHTAG
+ 1294:      ,NR_IN_GLIEDERUNG
+ 1295:      ,ID_GESCHAEFT
+ 1296:      ,SL_TYP
+ 1297:      ,SL_HERKUNFT
+ 1298:      ,NR_GESCHAEFTSART
+ 1299:      ,RZBK1
+ 1300:      ,DAT_STICHTAG1
+ 1301:      ,NR_IN_GLIEDERUNG1
+ 1302:      ,NR_PERSON
+ 1303:      ,NR_KONTO
+ 1304:      ,SL_WAE
+ 1305:      ,NR_EGBILS
+ 1306:      ,NR_GAB
+ 1307:      ,SL_KREDITNEHMERSTATISTIK
+ 1308:      ,SL_BUCHZUORDNUNG
+ 1309:      ,DAT_BEGINN
+ 1310:      ,DAT_LAUFZEITENDE
+ 1311:      ,DAT_KUENDIGUNG
+ 1312:      ,BETR_KAPITALSALDO
+ 1313:      ,BETR_BUCHWERT
+ 1314:      ,BETR_EWB_RUECKSTELLUNG
+ 1315:      ,BETR_ABSCHREIBUNG
+ 1316:      ,SL_TYP_ABSCHREIBUNG
+ 1317:      ,BETR_EXT_ZUSAGEOFFEN
+ 1318:      ,SL_UNWIDERRUFLICH
+ 1319:      ,KZ_STUNDUNG
+ 1320:      ,KZ_PROBEZEIT
+ 1321:      ,SL_STUNDUNGSSCHWERPKT
+ 1322:      ,BETR_PWBERGEBNIS
+ 1323:      ,BETR_340FERGEBNIS
+ 1324:      ,DAT_AB_STUNDUNGSMASS
+ 1325:      ,DAT_END_PROBEZEIT
+ 1326:      ,BETR_340F_GEBUNDEN
+ 1327:      ,BETR_340F_FREI
+ 1328:      ,BETR_EINBUCHUNG
+ 1329:      ,NR_NOSTROKONTO 
+ 1330:      ,BETR_ZUSCHREIBUNG
+ 1331:      ,KZ_SK_NEGATIVZINSEN
+ 1332:     ) AS Select 
+ 1333:       RZBK
+ 1334:      ,DAT_STICHTAG
+ 1335:      ,NR_IN_GLIEDERUNG
+ 1336:      ,ID_GESCHAEFT
+ 1337:      ,SL_TYP
+ 1338:      ,SL_HERKUNFT
+ 1339:      ,NR_GESCHAEFTSART
+ 1340:      ,RZBK1
+ 1341:      ,DAT_STICHTAG1
+ 1342:      ,NR_IN_GLIEDERUNG1
+ 1343:      ,NR_PERSON
+ 1344:      ,NR_KONTO
+ 1345:      ,SL_WAE
+ 1346:      ,NR_EGBILS
+ 1347:      ,NR_GAB
+ 1348:      ,SL_KREDITNEHMERSTATISTIK
+ 1349:      ,SL_BUCHZUORDNUNG
+ 1350:      ,DAT_BEGINN
+ 1351:      ,DAT_LAUFZEITENDE
+ 1352:      ,DAT_KUENDIGUNG
+ 1353:      ,BETR_KAPITALSALDO
+ 1354:      ,BETR_BUCHWERT
+ 1355:      ,BETR_EWB_RUECKSTELLUNG
+ 1356:      ,BETR_ABSCHREIBUNG
+ 1357:      ,SL_TYP_ABSCHREIBUNG
+ 1358:      ,BETR_EXT_ZUSAGEOFFEN
+ 1359:      ,SL_UNWIDERRUFLICH
+ 1360:      ,KZ_STUNDUNG
+ 1361:      ,KZ_PROBEZEIT
+ 1362:      ,SL_STUNDUNGSSCHWERPKT
+ 1363:      ,BETR_PWBERGEBNIS
+ 1364:      ,BETR_340FERGEBNIS
+ 1365:      ,DAT_AB_STUNDUNGSMASS
+ 1366:      ,DAT_END_PROBEZEIT
+ 1367:      ,BETR_340F_GEBUNDEN
+ 1368:      ,BETR_340F_FREI   
+ 1369:      ,BETR_EINBUCHUNG
+ 1370:      ,NR_NOSTROKONTO 
+ 1371:      ,BETR_ZUSCHREIBUNG 
+ 1372:      ,KZ_SK_NEGATIVZINSEN
+ 1373:     From  FINREP_2801.STBPE_GESCHAEFT_STAMM_T01;
+ 1374: --// VIEW STBPE_GESCHAEFT_UMSATZ_V0101 ******************************
+ 1375: -- Kurzbezeichnung : FinrepZL
+ 1376: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede
+ 1377: -- DBA-EW          :  (xgaddnl)
+ 1378: -- Erstell-Datum   : 18.10.2016
+ 1379: --*******************************************************************
+ 1380: --
+ 1381:    CREATE OR REPLACE VIEW FINREP_2801.STBPE_GESCHAEFT_UMSATZ_V0101 (
+ 1382:       RZBK
+ 1383:      ,NR_IN_GLIEDERUNG
+ 1384:      ,ID_GESCHAEFT
+ 1385:      ,DAT_BUCHUNG
+ 1386:      ,DAT_UMSATZ
+ 1387:      ,ZT_UMSATZ
+ 1388:      ,NR_LFD
+ 1389:      ,ID_BUCHUNG
+ 1390:      ,NR_L_LIEFERUNG
+ 1391:      ,NR_PRIMANOTE
+ 1392:      ,BEZ_PGM
+ 1393:      ,SL_UMSATZSTATUS
+ 1394:      ,SL_UMS_SACHKTO
+ 1395:      ,SL_ART_UMS_SACHKTO
+ 1396:      ,SL_ART_BEWEGUNGORI
+ 1397:      ,SL_ART_BEWEGUNGERM
+ 1398:      ,BETR_UMSATZ
+ 1399:      ,NR_KTO
+ 1400:      ,NR_KT_URSPRUNG
+ 1401:      ,KZ_BUCHUNGSID
+ 1402:      ,ID_BG_URSPRUNG
+ 1403:      ,KZ_STORNO
+ 1404:      ,ID_GSF_VERURSACHORI
+ 1405:      ,ID_GSF_VERURSACHERM
+ 1406:      ,NR_EGBILS
+ 1407:      ,NR_GAB
+ 1408:      ,NR_PERSON
+ 1409:      ,ID_SACHKTOVERDICHTUNG
+ 1410:      ,SL_UMSATZTYP
+ 1411:      ,TSP_LIEFERUNG
+ 1412:      ,LG_VERWENDUNGSZWECK
+ 1413:      ,TXT_VERWENDUNGSZWECK
+ 1414:      ,SL_ART_FACHLICHORI
+ 1415:      ,KZ_SK_NEGATIVZINSEN   
+ 1416:     ) AS Select 
+ 1417:       RZBK
+ 1418:      ,NR_IN_GLIEDERUNG
+ 1419:      ,ID_GESCHAEFT
+ 1420:      ,DAT_BUCHUNG
+ 1421:      ,DAT_UMSATZ
+ 1422:      ,ZT_UMSATZ
+ 1423:      ,NR_LFD
+ 1424:      ,ID_BUCHUNG
+ 1425:      ,NR_L_LIEFERUNG
+ 1426:      ,NR_PRIMANOTE
+ 1427:      ,BEZ_PGM
+ 1428:      ,SL_UMSATZSTATUS
+ 1429:      ,SL_UMS_SACHKTO
+ 1430:      ,SL_ART_UMS_SACHKTO
+ 1431:      ,SL_ART_BEWEGUNGORI
+ 1432:      ,SL_ART_BEWEGUNGERM
+ 1433:      ,BETR_UMSATZ
+ 1434:      ,NR_KTO
+ 1435:      ,NR_KT_URSPRUNG
+ 1436:      ,KZ_BUCHUNGSID
+ 1437:      ,ID_BG_URSPRUNG
+ 1438:      ,KZ_STORNO
+ 1439:      ,ID_GSF_VERURSACHORI
+ 1440:      ,ID_GSF_VERURSACHERM
+ 1441:      ,NR_EGBILS
+ 1442:      ,NR_GAB
+ 1443:      ,NR_PERSON
+ 1444:      ,ID_SACHKTOVERDICHTUNG
+ 1445:      ,SL_UMSATZTYP
+ 1446:      ,TSP_LIEFERUNG
+ 1447:      ,LG_VERWENDUNGSZWECK
+ 1448:      ,TXT_VERWENDUNGSZWECK
+ 1449:      ,SL_ART_FACHLICHORI
+ 1450:      ,KZ_SK_NEGATIVZINSEN
+ 1451:     From  FINREP_2801.STBPE_GESCHAEFT_UMSATZ_T01;
+ 1452: --// VIEW STBPE_GESCHAEFT_WP_V0101 **********************************
+ 1453: -- Kurzbezeichnung : FinrepZL
+ 1454: -- Entw/Modellierer: Keller/Ohmstede
+ 1455: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 1456: -- Erstell-Datum   : 22.07.2016
+ 1457: --*******************************************************************
+ 1458: --
+ 1459:    CREATE OR REPLACE VIEW FINREP_2801.STBPE_GESCHAEFT_WP_V0101 (
+ 1460:       RZBK
+ 1461:      ,DAT_STICHTAG
+ 1462:      ,NR_IN_GLIEDERUNG
+ 1463:      ,ID_GESCHAEFT
+ 1464:      ,NR_WKN
+ 1465:      ,NR_DEPOT
+ 1466:      ,BETR_ZINSABGRENZUNG
+ 1467:      ,ANZ_STUECK
+ 1468:      ,SL_ART_WERTMINDERUNG
+ 1469:     ) AS Select 
+ 1470:       RZBK
+ 1471:      ,DAT_STICHTAG
+ 1472:      ,NR_IN_GLIEDERUNG
+ 1473:      ,ID_GESCHAEFT
+ 1474:      ,NR_WKN
+ 1475:      ,NR_DEPOT
+ 1476:      ,BETR_ZINSABGRENZUNG
+ 1477:      ,ANZ_STUECK
+ 1478:      ,SL_ART_WERTMINDERUNG
+ 1479:     From  FINREP_2801.STBPE_GESCHAEFT_WP_T01;
+ 1480: --// VIEW STBPE_KONTOGRUPPE_V0101 ***********************************
+ 1481: -- Kurzbezeichnung : FinrepZL
+ 1482: -- Entw/Modellierer: Keller/Ohmstede
+ 1483: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 1484: -- Erstell-Datum   : 22.07.2016
+ 1485: --*******************************************************************
+ 1486: --
+ 1487:    CREATE OR REPLACE VIEW FINREP_2801.STBPE_KONTOGRUPPE_V0101 (
+ 1488:       RZBK
+ 1489:      ,DAT_STICHTAG
+ 1490:      ,NR_IN_GLIEDERUNG
+ 1491:      ,ID_GESCHAEFT
+ 1492:      ,SL_ART_KONTOGRUPPE
+ 1493:      ,RZBK1
+ 1494:      ,DAT_STICHTAG1
+ 1495:      ,NR_IN_GLIEDERUNG1
+ 1496:      ,ID_GESCHAEFT1
+ 1497:      ,NR_KONTOGRUPPE
+ 1498:      ,KZ_HAUPTKONTO
+ 1499:     ) AS Select 
+ 1500:       RZBK
+ 1501:      ,DAT_STICHTAG
+ 1502:      ,NR_IN_GLIEDERUNG
+ 1503:      ,ID_GESCHAEFT
+ 1504:      ,SL_ART_KONTOGRUPPE
+ 1505:      ,RZBK1
+ 1506:      ,DAT_STICHTAG1
+ 1507:      ,NR_IN_GLIEDERUNG1
+ 1508:      ,ID_GESCHAEFT1
+ 1509:      ,NR_KONTOGRUPPE
+ 1510:      ,KZ_HAUPTKONTO
+ 1511:     From  FINREP_2801.STBPE_KONTOGRUPPE_T01;
+ 1512: --// VIEW STBPE_KREDITZUSAGE_V0101 **********************************
+ 1513: -- Kurzbezeichnung : FinrepZL
+ 1514: -- Entw/Modellierer: Keller/Ohmstede
+ 1515: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 1516: -- Erstell-Datum   : 22.07.2016
+ 1517: --*******************************************************************
+ 1518: --
+ 1519:    CREATE OR REPLACE VIEW FINREP_2801.STBPE_KREDITZUSAGE_V0101 (
+ 1520:       RZBK
+ 1521:      ,DAT_STICHTAG
+ 1522:      ,NR_IN_GLIEDERUNG
+ 1523:      ,ID_GESCHAEFT
+ 1524:      ,ID_ZUSAGE
+ 1525:      ,SL_ART_ZUSAGE
+ 1526:      ,BETR_EXT_ZUSAGEOFFEN
+ 1527:      ,SL_WAE
+ 1528:      ,DAT_BEGINN
+ 1529:      ,DAT_LAUFZEITENDE
+ 1530:      ,SL_UNWIDERRUFLICH
+ 1531:      ,KZ_ENTHALTEN
+ 1532:     ) AS Select 
+ 1533:       RZBK
+ 1534:      ,DAT_STICHTAG
+ 1535:      ,NR_IN_GLIEDERUNG
+ 1536:      ,ID_GESCHAEFT
+ 1537:      ,ID_ZUSAGE
+ 1538:      ,SL_ART_ZUSAGE
+ 1539:      ,BETR_EXT_ZUSAGEOFFEN
+ 1540:      ,SL_WAE
+ 1541:      ,DAT_BEGINN
+ 1542:      ,DAT_LAUFZEITENDE
+ 1543:      ,SL_UNWIDERRUFLICH
+ 1544:      ,KZ_ENTHALTEN
+ 1545:     From  FINREP_2801.STBPE_KREDITZUSAGE_T01;
+ 1546: --// VIEW STBPE_LAND_V0101 ******************************************
+ 1547: -- Kurzbezeichnung : FinrepZL
+ 1548: -- Entw/Modellierer: Keller/Ohmstede
+ 1549: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 1550: -- Erstell-Datum   : 22.07.2016
+ 1551: --*******************************************************************
+ 1552: --
+ 1553:    CREATE OR REPLACE VIEW FINREP_2801.STBPE_LAND_V0101 (
+ 1554:       DAT_STICHTAG
+ 1555:      ,SL_LAND
+ 1556:      ,BEZ_LAND
+ 1557:      ,SL_LANDISO
+ 1558:     ) AS Select 
+ 1559:       DAT_STICHTAG
+ 1560:      ,SL_LAND
+ 1561:      ,BEZ_LAND
+ 1562:      ,SL_LANDISO
+ 1563:     From  FINREP_UEG.STBPE_LAND_T01;
+ 1564: --// VIEW STBPE_MANDANT_V0101 ***************************************
+ 1565: -- Kurzbezeichnung : FinrepZL
+ 1566: -- Entw/Modellierer: Keller/Ohmstede
+ 1567: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 1568: -- Erstell-Datum   : 05.08.2016
+ 1569: --*******************************************************************
+ 1570: --
+ 1571:    CREATE OR REPLACE VIEW FINREP_2801.STBPE_MANDANT_V0101 (
+ 1572:       RZBK
+ 1573:      ,DAT_STICHTAG
+ 1574:      ,NR_IN_GLIEDERUNG
+ 1575:      ,BEZ_MANDANT
+ 1576:      ,ID_GENO
+ 1577:      ,SL_LAND
+ 1578:      ,SL_BUNDESLAND
+ 1579:      ,SL_FINREPMHIERARCHIE
+ 1580:     ) AS Select 
+ 1581:       RZBK
+ 1582:      ,DAT_STICHTAG
+ 1583:      ,NR_IN_GLIEDERUNG
+ 1584:      ,BEZ_MANDANT
+ 1585:      ,ID_GENO
+ 1586:      ,SL_LAND
+ 1587:      ,SL_BUNDESLAND
+ 1588:      ,SL_FINREPMHIERARCHIE
+ 1589:     From  FINREP_2801.STBPE_MANDANT_T01;
+ 1590: --// VIEW STBPE_PERSON_UNREGELMAES_V0101 ****************************
+ 1591: -- Kurzbezeichnung : Finrep ZL
+ 1592: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede
+ 1593: -- DBA-EW          : Jürgen Denkler
+ 1594: -- Erstell-Datum   : 12.12.2016
+ 1595: --*******************************************************************
+ 1596: --
+ 1597:    CREATE OR REPLACE VIEW FINREP_2801.STBPE_PERSON_UNREGELMAES_V0101 (
+ 1598:       RZBK
+ 1599:      ,NR_IN_GLIEDERUNG
+ 1600:      ,NR_PERSON
+ 1601:      ,DAT_BEGINN
+ 1602:      ,SL_TYP_UNREGELMAESSIG
+ 1603:      ,DAT_ENDE
+ 1604:     ) AS Select 
+ 1605:       RZBK
+ 1606:      ,NR_IN_GLIEDERUNG
+ 1607:      ,NR_PERSON
+ 1608:      ,DAT_BEGINN
+ 1609:      ,SL_TYP_UNREGELMAESSIG
+ 1610:      ,DAT_ENDE
+ 1611:     From  FINREP_2801.STBPE_PERSON_UNREGELMAES_T01;
+ 1612: --// VIEW STBPE_PERSON_V0101 ****************************************
+ 1613: -- Kurzbezeichnung : FinrepZL
+ 1614: -- Entw/Modellierer: Keller/Ohmstede
+ 1615: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 1616: -- Erstell-Datum   : 22.07.2016
+ 1617: --*******************************************************************
+ 1618: --
+ 1619:    CREATE OR REPLACE VIEW FINREP_2801.STBPE_PERSON_V0101 (
+ 1620:       RZBK
+ 1621:      ,DAT_STICHTAG
+ 1622:      ,NR_IN_GLIEDERUNG
+ 1623:      ,NR_PERSON
+ 1624:      ,BEZ_KURZNAME
+ 1625:      ,SL_LAND
+ 1626:      ,SL_INT_RATING
+ 1627:      ,ANZ_TG_VERZUG
+ 1628:      ,KZ_NPE
+ 1629:      ,KZ_NPESTUNDUNG
+ 1630:      ,KZ_KMU
+ 1631:      ,SL_RFM_AUSPR
+ 1632:      ,SL_WZG
+ 1633:      ,SL_KWG_EINORDNUNG
+ 1634:      ,SL_TRG_ORGA
+ 1635:      ,SL_WZG_BUBA
+ 1636:      ,SL_WZG_NACE
+ 1637:      ,SL_SEKTOR
+ 1638:      ,KZ_WIEDERG 
+ 1639: 	 ,KZ_WOHLV 
+ 1640: 	 ,DAT_END_WOHLV
+ 1641:     ) AS Select 
+ 1642:       RZBK
+ 1643:      ,DAT_STICHTAG
+ 1644:      ,NR_IN_GLIEDERUNG
+ 1645:      ,NR_PERSON
+ 1646:      ,BEZ_KURZNAME
+ 1647:      ,SL_LAND
+ 1648:      ,SL_INT_RATING
+ 1649:      ,ANZ_TG_VERZUG
+ 1650:      ,KZ_NPE
+ 1651:      ,KZ_NPESTUNDUNG
+ 1652:      ,KZ_KMU
+ 1653:      ,SL_RFM_AUSPR
+ 1654:      ,SL_WZG
+ 1655:      ,SL_KWG_EINORDNUNG
+ 1656:      ,SL_TRG_ORGA
+ 1657:      ,SL_WZG_BUBA
+ 1658:      ,SL_WZG_NACE
+ 1659:      ,SL_SEKTOR
+ 1660:      ,KZ_WIEDERG 
+ 1661: 	 ,KZ_WOHLV 
+ 1662: 	 ,DAT_END_WOHLV
+ 1663:     From  FINREP_2801.STBPE_PERSON_T01;
+ 1664: --// VIEW STBPE_SICHERHEIT_V0101 ************************************
+ 1665: -- Kurzbezeichnung : FinrepZL
+ 1666: -- Entw/Modellierer: Keller/Ohmstede
+ 1667: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 1668: -- Erstell-Datum   : 22.07.2016
+ 1669: --*******************************************************************
+ 1670: --
+ 1671:    CREATE OR REPLACE VIEW FINREP_2801.STBPE_SICHERHEIT_V0101 (
+ 1672:       RZBK
+ 1673:      ,DAT_STICHTAG
+ 1674:      ,NR_IN_GLIEDERUNG
+ 1675:      ,NR_SICHERHEIT
+ 1676:      ,SL_SICHERUNGSTYP
+ 1677:      ,DAT_BEGINN
+ 1678:      ,DAT_LAUFZEITENDE
+ 1679:      ,BETR_SICHERHEIT
+ 1680:      ,SL_WAE
+ 1681:     ) AS Select 
+ 1682:       RZBK
+ 1683:      ,DAT_STICHTAG
+ 1684:      ,NR_IN_GLIEDERUNG
+ 1685:      ,NR_SICHERHEIT
+ 1686:      ,SL_SICHERUNGSTYP
+ 1687:      ,DAT_BEGINN
+ 1688:      ,DAT_LAUFZEITENDE
+ 1689:      ,BETR_SICHERHEIT
+ 1690:      ,SL_WAE
+ 1691:     From  FINREP_2801.STBPE_SICHERHEIT_T01;
+ 1692: --// VIEW STBPE_VERTSICHERHEIT_V0101 ********************************
+ 1693: -- Kurzbezeichnung : FinrepZL
+ 1694: -- Entw/Modellierer: Keller/Ohmstede
+ 1695: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 1696: -- Erstell-Datum   : 22.07.2016
+ 1697: --*******************************************************************
+ 1698: --
+ 1699:    CREATE OR REPLACE VIEW FINREP_2801.STBPE_VERTSICHERHEIT_V0101 (
+ 1700:       RZBK
+ 1701:      ,DAT_STICHTAG
+ 1702:      ,NR_IN_GLIEDERUNG
+ 1703:      ,NR_SICHERHEIT
+ 1704:      ,RZBK1
+ 1705:      ,DAT_STICHTAG1
+ 1706:      ,NR_IN_GLIEDERUNG1
+ 1707:      ,ID_GESCHAEFT
+ 1708:      ,BETR_SI_VERTEILT
+ 1709:     ) AS Select 
+ 1710:       RZBK
+ 1711:      ,DAT_STICHTAG
+ 1712:      ,NR_IN_GLIEDERUNG
+ 1713:      ,NR_SICHERHEIT
+ 1714:      ,RZBK1
+ 1715:      ,DAT_STICHTAG1
+ 1716:      ,NR_IN_GLIEDERUNG1
+ 1717:      ,ID_GESCHAEFT
+ 1718:      ,BETR_SI_VERTEILT
+ 1719:     From  FINREP_2801.STBPE_VERTSICHERHEIT_T01;
+ 1720: --// VIEW STBPE_WAEHRUNGSKURS_V0101 *********************************
+ 1721: -- Kurzbezeichnung : FinrepZL
+ 1722: -- Entw/Modellierer: Keller/Ohmstede
+ 1723: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 1724: -- Erstell-Datum   : 22.07.2016
+ 1725: --*******************************************************************
+ 1726: --
+ 1727:    CREATE OR REPLACE VIEW FINREP_2801.STBPE_WAEHRUNGSKURS_V0101 (
+ 1728:       SL_WAE
+ 1729:      ,DAT_KURS
+ 1730:      ,BEZ_WAE
+ 1731:      ,SL_WAE_BUBA
+ 1732:      ,KZ_WAE_EUR
+ 1733:      ,KRS_EZBREFERENZ
+ 1734:     ) AS Select 
+ 1735:       SL_WAE
+ 1736:      ,DAT_KURS
+ 1737:      ,BEZ_WAE
+ 1738:      ,SL_WAE_BUBA
+ 1739:      ,KZ_WAE_EUR
+ 1740:      ,KRS_EZBREFERENZ
+ 1741:     From  FINREP_UEG.STBPE_WAEHRUNGSKURS_T01;
+ 1742: --// VIEW STBPE_WP_STAMM_V0101 **************************************
+ 1743: -- Kurzbezeichnung : FinrepZL
+ 1744: -- Entw/Modellierer: Keller/Ohmstede
+ 1745: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 1746: -- Erstell-Datum   : 22.07.2016
+ 1747: --*******************************************************************
+ 1748: --
+ 1749:    CREATE OR REPLACE VIEW FINREP_2801.STBPE_WP_STAMM_V0101 (
+ 1750:       RZBK
+ 1751:      ,DAT_STICHTAG
+ 1752:      ,NR_IN_GLIEDERUNG
+ 1753:      ,NR_ISIN
+ 1754:      ,NR_WKN
+ 1755:      ,SL_BOERSENFAEHIGKEIT
+ 1756:      ,KZ_GEWAEHRLEISTUNGSGEBER
+ 1757:      ,DAT_ZINSLAUFENDE
+ 1758:      ,DAT_ZINSLAUFBEGINN
+ 1759:      ,DAT_EMISSION
+ 1760:      ,SL_ART_ZINSSATZ
+ 1761:      ,NR_KURSDIVISOR
+ 1762:      ,NR_EMITTENT
+ 1763:      ,SL_WAE_DEPOT
+ 1764:      ,DAT_LZT_TILGUNG
+ 1765:      ,NR_ZINSRECHNUNGSMETHODE
+ 1766:      ,SL_KUNDENSYSTEMATIK
+ 1767:      ,SL_RANGFORDERUNG
+ 1768:      ,KZ_PREISNOTIERUNG
+ 1769:      ,SL_INSTRUMENTART1
+ 1770:      ,SL_INSTRUMENTART2
+ 1771:      ,SL_INSTRUMENTART3
+ 1772:      ,SL_INSTRUMENTART4
+ 1773:      ,SL_INSTRUMENTART5
+ 1774:      ,SL_INSTRUMENTART6
+ 1775:      ,SL_INSTRUMENTART7
+ 1776:      ,NR_GARANT
+ 1777:      ,KZ_SCHULDVERSCHREIBUNGGED
+ 1778:     ) AS Select 
+ 1779:       RZBK
+ 1780:      ,DAT_STICHTAG
+ 1781:      ,NR_IN_GLIEDERUNG
+ 1782:      ,NR_ISIN
+ 1783:      ,NR_WKN
+ 1784:      ,SL_BOERSENFAEHIGKEIT
+ 1785:      ,KZ_GEWAEHRLEISTUNGSGEBER
+ 1786:      ,DAT_ZINSLAUFENDE
+ 1787:      ,DAT_ZINSLAUFBEGINN
+ 1788:      ,DAT_EMISSION
+ 1789:      ,SL_ART_ZINSSATZ
+ 1790:      ,NR_KURSDIVISOR
+ 1791:      ,NR_EMITTENT
+ 1792:      ,SL_WAE_DEPOT
+ 1793:      ,DAT_LZT_TILGUNG
+ 1794:      ,NR_ZINSRECHNUNGSMETHODE
+ 1795:      ,SL_KUNDENSYSTEMATIK
+ 1796:      ,SL_RANGFORDERUNG
+ 1797:      ,KZ_PREISNOTIERUNG
+ 1798:      ,SL_INSTRUMENTART1
+ 1799:      ,SL_INSTRUMENTART2
+ 1800:      ,SL_INSTRUMENTART3
+ 1801:      ,SL_INSTRUMENTART4
+ 1802:      ,SL_INSTRUMENTART5
+ 1803:      ,SL_INSTRUMENTART6
+ 1804:      ,SL_INSTRUMENTART7
+ 1805:      ,NR_GARANT
+ 1806:      ,KZ_SCHULDVERSCHREIBUNGGED
+ 1807:     From  FINREP_2801.STBPE_WP_STAMM_T01;
+ 1808: --// VIEW STBPE_GESCHAEFT_ABRECHNG_V0101 ****************************
+ 1809: -- Kurzbezeichnung : FinrepZL
+ 1810: -- Entw/Modellierer: Mersmann/Ohmstede
+ 1811: -- DBA-EW          : Jürgen Denkler
+ 1812: -- Erstell-Datum   : 25.11.2020
+ 1813: --*******************************************************************
+ 1814: --
+ 1816: CREATE OR REPLACE VIEW FINREP_2801.STBPE_GESCHAEFT_ABRECHNG_V0101 (
+ 1817:  RZBK, 
+ 1818:  DAT_STICHTAG, 
+ 1819:  NR_IN_GLIEDERUNG, 
+ 1820:  ID_GESCHAEFT, 
+ 1821:  SL_ZINSGEBUEHRENTYP, 
+ 1822:  NR_LFD, 
+ 1823:  NR_KONTO, 
+ 1824:  NR_IBAN, 
+ 1825:  ID_KT_TEIL1, 
+ 1826:  ID_KT_TEIL2, 
+ 1827:  NR_PERSON, 
+ 1828:  SL_SPARTE, 
+ 1829:  SL_KONTOART, 
+ 1830:  NR_GAB, 
+ 1831:  NR_PRODUKT, 
+ 1832:  NR_KONTOGUV, 
+ 1833:  NR_KONTORAP, 
+ 1834:  SL_WAE, 
+ 1835:  BETR_SALDO, 
+ 1836:  DAT_ZINSTERMINALT, 
+ 1837:  DAT_ZINSTERMIN, 
+ 1838:  PZ_ZINSSATZAKTUELL, 
+ 1839:  BETR_ABRECHNUNG, 
+ 1840:  BETR_ABRECHNUNGWAE, 
+ 1841:  SL_BALANCEART, 
+ 1842:  KZ_AVAL, 
+ 1843:  NR_EGBILS, 
+ 1844:  KZ_STORNO,
+ 1845:  KZ_SK_NEGATIVZINSEN
+ 1846:  ) AS Select 
+ 1847:  RZBK, 
+ 1848:  DAT_STICHTAG, 
+ 1849:  NR_IN_GLIEDERUNG, 
+ 1850:  ID_GESCHAEFT, 
+ 1851:  SL_ZINSGEBUEHRENTYP, 
+ 1852:  NR_LFD, 
+ 1853:  NR_KONTO, 
+ 1854:  NR_IBAN, 
+ 1855:  ID_KT_TEIL1, 
+ 1856:  ID_KT_TEIL2, 
+ 1857:  NR_PERSON, 
+ 1858:  SL_SPARTE, 
+ 1859:  SL_KONTOART, 
+ 1860:  NR_GAB, 
+ 1861:  NR_PRODUKT, 
+ 1862:  NR_KONTOGUV, 
+ 1863:  NR_KONTORAP, 
+ 1864:  SL_WAE, 
+ 1865:  BETR_SALDO, 
+ 1866:  DAT_ZINSTERMINALT, 
+ 1867:  DAT_ZINSTERMIN, 
+ 1868:  PZ_ZINSSATZAKTUELL, 
+ 1869:  BETR_ABRECHNUNG, 
+ 1870:  BETR_ABRECHNUNGWAE, 
+ 1871:  SL_BALANCEART, 
+ 1872:  KZ_AVAL, 
+ 1873:  NR_EGBILS, 
+ 1874:  KZ_STORNO,
+ 1875:  KZ_SK_NEGATIVZINSEN 
+ 1876:  From FINREP_2801.STBPE_GESCHAEFT_ABRECHNG_T01;
+ 1879: --// VIEW STBPE_GESCHAEFT_ABRECHNG_V0101 ****************************
+ 1880: -- Kurzbezeichnung : FinrepZL
+ 1881: -- Entw/Modellierer: Mersmann/Ohmstede
+ 1882: -- DBA-EW          : Jürgen Denkler
+ 1883: -- Erstell-Datum   : 25.11.2020
+ 1884: --*******************************************************************
+ 1885: --
+ 1887:       GRANT SELECT, UPDATE, INSERT, DELETE ON 
+ 1888:        FINREP_2801.STBPE_GESCHAEFT_ABRECHNG_V0101
+ 1889:        TO PUBLIC ;
+ 1890: --// VIEW STBPE_BUNDESLAND_V0101 ************************************
+ 1891: -- Kurzbezeichnung : FinrepZL
+ 1892: -- Entw/Modellierer: Keller/Ohmstede
+ 1893: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 1894: -- Erstell-Datum   : 22.07.2016
+ 1895: --*******************************************************************
+ 1896: --
+ 1898:       GRANT SELECT, UPDATE, INSERT, DELETE ON 
+ 1899:        FINREP_2801.STBPE_BUNDESLAND_V0101
+ 1900:        TO PUBLIC ;
+ 1901: --// VIEW STBPE_FEHLERATTRIBUT_V0101 ********************************
+ 1902: -- Kurzbezeichnung : FinrepZL
+ 1903: -- Entw/Modellierer: Keller/Ohmstede
+ 1904: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 1905: -- Erstell-Datum   : 22.07.2016
+ 1906: --*******************************************************************
+ 1907: --
+ 1909:       GRANT SELECT, UPDATE, INSERT, DELETE ON 
+ 1910:        FINREP_2801.STBPE_FEHLERATTRIBUT_V0101
+ 1911:        TO PUBLIC ;
+ 1912: --// VIEW STBPE_FEHLERPROTOKOLL_V0101 *******************************
+ 1913: -- Kurzbezeichnung : FinrepZL
+ 1914: -- Entw/Modellierer: Keller/Ohmstede
+ 1915: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 1916: -- Erstell-Datum   : 22.07.2016
+ 1917: --*******************************************************************
+ 1918: --
+ 1920:       GRANT SELECT, UPDATE, INSERT, DELETE ON 
+ 1921:        FINREP_2801.STBPE_FEHLERPROTOKOLL_V0101
+ 1922:        TO PUBLIC ;
+ 1923: --// VIEW STBPE_GESCHAEFT_ABG_V0101 *********************************
+ 1924: -- Kurzbezeichnung : FinrepZL
+ 1925: -- Entw/Modellierer: Keller/Ohmstede
+ 1926: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 1927: -- Erstell-Datum   : 22.07.2016
+ 1928: --*******************************************************************
+ 1929: --
+ 1931:       GRANT SELECT, UPDATE, INSERT, DELETE ON 
+ 1932:        FINREP_2801.STBPE_GESCHAEFT_ABG_V0101
+ 1933:        TO PUBLIC ;
+ 1934: --// VIEW STBPE_GESCHAEFT_DERIVAT_V0101 *****************************
+ 1935: -- Kurzbezeichnung : FinrepZL
+ 1936: -- Entw/Modellierer: Keller/Ohmstede
+ 1937: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 1938: -- Erstell-Datum   : 22.07.2016
+ 1939: --*******************************************************************
+ 1940: --
+ 1942:       GRANT SELECT, UPDATE, INSERT, DELETE ON 
+ 1943:        FINREP_2801.STBPE_GESCHAEFT_DERIVAT_V0101
+ 1944:        TO PUBLIC ;
+ 1945: --// VIEW STBPE_GESCHAEFT_STAMM_V0101 *******************************
+ 1946: -- Kurzbezeichnung : FinrepZL
+ 1947: -- Entw/Modellierer: Keller/Ohmstede
+ 1948: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 1949: -- Erstell-Datum   : 22.07.2016
+ 1950: --*******************************************************************
+ 1951: --
+ 1953:       GRANT SELECT, UPDATE, INSERT, DELETE ON 
+ 1954:        FINREP_2801.STBPE_GESCHAEFT_STAMM_V0101
+ 1955:        TO PUBLIC ;
+ 1956: --// VIEW STBPE_GESCHAEFT_UMSATZ_V0101 ******************************
+ 1957: -- Kurzbezeichnung : FinrepZL
+ 1958: -- Entw/Modellierer: Keller/Ohmstede
+ 1959: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 1960: -- Erstell-Datum   : 22.07.2016
+ 1961: --*******************************************************************
+ 1962: --
+ 1964:       GRANT SELECT, UPDATE, INSERT, DELETE ON 
+ 1965:        FINREP_2801.STBPE_GESCHAEFT_UMSATZ_V0101
+ 1966:        TO PUBLIC ;
+ 1967: --// VIEW STBPE_GESCHAEFT_WP_V0101 **********************************
+ 1968: -- Kurzbezeichnung : FinrepZL
+ 1969: -- Entw/Modellierer: Keller/Ohmstede
+ 1970: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 1971: -- Erstell-Datum   : 22.07.2016
+ 1972: --*******************************************************************
+ 1973: --
+ 1975:       GRANT SELECT, UPDATE, INSERT, DELETE ON 
+ 1976:        FINREP_2801.STBPE_GESCHAEFT_WP_V0101
+ 1977:        TO PUBLIC ;
+ 1978: --// VIEW STBPE_KONTOGRUPPE_V0101 ***********************************
+ 1979: -- Kurzbezeichnung : FinrepZL
+ 1980: -- Entw/Modellierer: Keller/Ohmstede
+ 1981: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 1982: -- Erstell-Datum   : 22.07.2016
+ 1983: --*******************************************************************
+ 1984: --
+ 1986:       GRANT SELECT, UPDATE, INSERT, DELETE ON 
+ 1987:        FINREP_2801.STBPE_KONTOGRUPPE_V0101
+ 1988:        TO PUBLIC ;
+ 1989: --// VIEW STBPE_KREDITZUSAGE_V0101 **********************************
+ 1990: -- Kurzbezeichnung : FinrepZL
+ 1991: -- Entw/Modellierer: Keller/Ohmstede
+ 1992: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 1993: -- Erstell-Datum   : 22.07.2016
+ 1994: --*******************************************************************
+ 1995: --
+ 1997:       GRANT SELECT, UPDATE, INSERT, DELETE ON 
+ 1998:        FINREP_2801.STBPE_KREDITZUSAGE_V0101
+ 1999:        TO PUBLIC ;
+ 2000: --// VIEW STBPE_LAND_V0101 ******************************************
+ 2001: -- Kurzbezeichnung : FinrepZL
+ 2002: -- Entw/Modellierer: Keller/Ohmstede
+ 2003: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 2004: -- Erstell-Datum   : 22.07.2016
+ 2005: --*******************************************************************
+ 2006: --
+ 2008:       GRANT SELECT, UPDATE, INSERT, DELETE ON 
+ 2009:        FINREP_2801.STBPE_LAND_V0101
+ 2010:        TO PUBLIC ;
+ 2011: --// VIEW STBPE_MANDANT_V0101 ***************************************
+ 2012: -- Kurzbezeichnung : FinrepZL
+ 2013: -- Entw/Modellierer: Keller/Ohmstede
+ 2014: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 2015: -- Erstell-Datum   : 22.07.2016
+ 2016: --*******************************************************************
+ 2017: --
+ 2019:       GRANT SELECT, UPDATE, INSERT, DELETE ON 
+ 2020:        FINREP_2801.STBPE_MANDANT_V0101
+ 2021:        TO PUBLIC ;
+ 2022: --// VIEW STBPE_PERSON_UNREGELMAES_V0101 ****************************
+ 2023: -- Kurzbezeichnung : FinrepZL
+ 2024: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede
+ 2025: -- DBA-EW          : Jürgen Denkler
+ 2026: -- Erstell-Datum   : 09.11.2016
+ 2027: --*******************************************************************
+ 2028: --
+ 2030:       GRANT SELECT, UPDATE, INSERT, DELETE ON 
+ 2031:        FINREP_2801.STBPE_PERSON_UNREGELMAES_V0101
+ 2032:        TO PUBLIC ;
+ 2033: --// VIEW STBPE_PERSON_V0101 ****************************************
+ 2034: -- Kurzbezeichnung : FinrepZL
+ 2035: -- Entw/Modellierer: Keller/Ohmstede
+ 2036: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 2037: -- Erstell-Datum   : 22.07.2016
+ 2038: --*******************************************************************
+ 2039: --
+ 2041:       GRANT SELECT, UPDATE, INSERT, DELETE ON 
+ 2042:        FINREP_2801.STBPE_PERSON_V0101
+ 2043:        TO PUBLIC ;
+ 2044: --// VIEW STBPE_SICHERHEIT_V0101 ************************************
+ 2045: -- Kurzbezeichnung : FinrepZL
+ 2046: -- Entw/Modellierer: Keller/Ohmstede
+ 2047: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 2048: -- Erstell-Datum   : 22.07.2016
+ 2049: --*******************************************************************
+ 2050: --
+ 2052:       GRANT SELECT, UPDATE, INSERT, DELETE ON 
+ 2053:        FINREP_2801.STBPE_SICHERHEIT_V0101
+ 2054:        TO PUBLIC ;
+ 2055: --// VIEW STBPE_VERTSICHERHEIT_V0101 ********************************
+ 2056: -- Kurzbezeichnung : FinrepZL
+ 2057: -- Entw/Modellierer: Keller/Ohmstede
+ 2058: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 2059: -- Erstell-Datum   : 22.07.2016
+ 2060: --*******************************************************************
+ 2061: --
+ 2063:       GRANT SELECT, UPDATE, INSERT, DELETE ON 
+ 2064:        FINREP_2801.STBPE_VERTSICHERHEIT_V0101
+ 2065:        TO PUBLIC ;
+ 2066: --// VIEW STBPE_WAEHRUNGSKURS_V0101 *********************************
+ 2067: -- Kurzbezeichnung : FinrepZL
+ 2068: -- Entw/Modellierer: Keller/Ohmstede
+ 2069: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 2070: -- Erstell-Datum   : 22.07.2016
+ 2071: --*******************************************************************
+ 2072: --
+ 2074:       GRANT SELECT, UPDATE, INSERT, DELETE ON 
+ 2075:        FINREP_2801.STBPE_WAEHRUNGSKURS_V0101
+ 2076:        TO PUBLIC ;
+ 2077: --// VIEW STBPE_WP_STAMM_V0101 **************************************
+ 2078: -- Kurzbezeichnung : FinrepZL
+ 2079: -- Entw/Modellierer: Keller/Ohmstede
+ 2080: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 2081: -- Erstell-Datum   : 22.07.2016
+ 2082: --*******************************************************************
+ 2083: --
+ 2085:       GRANT SELECT, UPDATE, INSERT, DELETE ON 
+ 2086:        FINREP_2801.STBPE_WP_STAMM_V0101
+ 2087:        TO PUBLIC ;
+ 2088: --// constraint STBPE_FEHLERATTRIBUT_T01 ****************************
+ 2089: -- Kurzbezeichnung : FinrepZL
+ 2090: -- Entw/Modellierer: Keller/Ohmstede
+ 2091: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 2092: -- Erstell-Datum   : 22.07.2016
+ 2093: --*******************************************************************
+ 2094: --
+ 2095:    ALTER TABLE FINREP_2801.STBPE_FEHLERATTRIBUT_T01 ADD
+ 2096:     CONSTRAINT STBPE_FEHLERATTRIBUT_T01P PRIMARY KEY
+ 2097:     (RZBK,
+ 2098:      NR_IN_GLIEDERUNG,
+ 2099:      DAT_STICHTAG,
+ 2100:      TXT_OID,
+ 2101:      NR_LFD) USING INDEX FINREP_2801.STBPE_FEHLERATTRIBUT_T01P_IDX;
+ 2102: --// constraint STBPE_FEHLERPROTOKOLL_T01 ***************************
+ 2103: -- Kurzbezeichnung : FinrepZL
+ 2104: -- Entw/Modellierer: Keller/Ohmstede
+ 2105: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 2106: -- Erstell-Datum   : 22.07.2016
+ 2107: --*******************************************************************
+ 2108: --
+ 2109:    ALTER TABLE FINREP_2801.STBPE_FEHLERPROTOKOLL_T01 ADD
+ 2110:     CONSTRAINT STBPE_FEHLERPROTOKOLL_T01P PRIMARY KEY
+ 2111:     (RZBK,
+ 2112:      DAT_STICHTAG,
+ 2113:      NR_IN_GLIEDERUNG,
+ 2114:      TXT_OID) USING INDEX FINREP_2801.STBPE_FEHLERPROTOKOLL_I0101;
+ 2115: --// constraint STBPE_GESCHAEFT_ABG_T01 *****************************
+ 2116: -- Kurzbezeichnung : FinrepZL
+ 2117: -- Entw/Modellierer: Keller/Ohmstede
+ 2118: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 2119: -- Erstell-Datum   : 22.07.2016
+ 2120: --*******************************************************************
+ 2121: --
+ 2122:    ALTER TABLE FINREP_2801.STBPE_GESCHAEFT_ABG_T01 ADD
+ 2123:     CONSTRAINT STBPE_GESCHAEFT_ABG_T01P PRIMARY KEY
+ 2124:     (RZBK,
+ 2125:      DAT_STICHTAG,
+ 2126:      NR_IN_GLIEDERUNG,
+ 2127:      ID_GESCHAEFT,
+ 2128:      SL_ZINSGEBUEHRENTYP,
+ 2129:      NR_LFD) USING INDEX FINREP_2801.STBPE_GESCHAEFT_ABG_I0101;
+ 2130: --// constraint STBPE_GESCHAEFT_DERIVAT_T01 *************************
+ 2131: -- Kurzbezeichnung : FinrepZL
+ 2132: -- Entw/Modellierer: Keller/Ohmstede
+ 2133: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 2134: -- Erstell-Datum   : 22.07.2016
+ 2135: --*******************************************************************
+ 2136: --
+ 2137:    ALTER TABLE FINREP_2801.STBPE_GESCHAEFT_DERIVAT_T01 ADD
+ 2138:     CONSTRAINT STBPE_GESCHAEFT_DERIVAT_T01P PRIMARY KEY
+ 2139:     (RZBK,
+ 2140:      DAT_STICHTAG,
+ 2141:      NR_IN_GLIEDERUNG,
+ 2142:      ID_GESCHAEFT) USING INDEX FINREP_2801.STBPE_GESCHAEFT_DERIVAT_I0101;
+ 2143: --// constraint STBPE_GESCHAEFT_STAMM_T01 ***************************
+ 2144: -- Kurzbezeichnung : FinrepZL
+ 2145: -- Entw/Modellierer: Keller/Ohmstede
+ 2146: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 2147: -- Erstell-Datum   : 22.07.2016
+ 2148: --*******************************************************************
+ 2149: --
+ 2150:    ALTER TABLE FINREP_2801.STBPE_GESCHAEFT_STAMM_T01 ADD
+ 2151:     CONSTRAINT STBPE_GESCHAEFT_STAMM_T01P PRIMARY KEY
+ 2152:     (RZBK,
+ 2153:      DAT_STICHTAG,
+ 2154:      NR_IN_GLIEDERUNG,
+ 2155:      ID_GESCHAEFT) USING INDEX FINREP_2801.STBPE_GESCHAEFT_STAMM_I0101;
+ 2156: --// constraint STBPE_GESCHAEFT_UMSATZ_T01 **************************
+ 2157: -- Kurzbezeichnung : FinrepZL
+ 2158: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede
+ 2159: -- DBA-EW          :  (xgaddnl)
+ 2160: -- Erstell-Datum   : 18.10.2016
+ 2161: --*******************************************************************
+ 2162: --
+ 2163:    ALTER TABLE FINREP_2801.STBPE_GESCHAEFT_UMSATZ_T01 ADD
+ 2164:     CONSTRAINT STBPE_GESCHAEFT_UMSATZ_T01P PRIMARY KEY
+ 2165:     (RZBK,
+ 2166:      NR_IN_GLIEDERUNG,
+ 2167:      ID_GESCHAEFT,
+ 2168:      DAT_BUCHUNG,
+ 2169:      DAT_UMSATZ,
+ 2170:      ZT_UMSATZ,
+ 2171:      NR_LFD,
+ 2172:      ID_BUCHUNG,
+ 2173:      NR_L_LIEFERUNG) USING INDEX
+ 2174:       FINREP_2801.STBPE_GESCHAEFT_UMSATZ_I0101;
+ 2175: --// constraint STBPE_GESCHAEFT_WP_T01 ******************************
+ 2176: -- Kurzbezeichnung : FinrepZL
+ 2177: -- Entw/Modellierer: Keller/Ohmstede
+ 2178: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 2179: -- Erstell-Datum   : 22.07.2016
+ 2180: --*******************************************************************
+ 2181: --
+ 2182:    ALTER TABLE FINREP_2801.STBPE_GESCHAEFT_WP_T01 ADD
+ 2183:     CONSTRAINT STBPE_GESCHAEFT_WP_T01P PRIMARY KEY
+ 2184:     (RZBK,
+ 2185:      DAT_STICHTAG,
+ 2186:      NR_IN_GLIEDERUNG,
+ 2187:      ID_GESCHAEFT) USING INDEX FINREP_2801.STBPE_GESCHAEFT_WP_I0101;
+ 2188: --// constraint STBPE_KONTOGRUPPE_T01 *******************************
+ 2189: -- Kurzbezeichnung : FinrepZL
+ 2190: -- Entw/Modellierer: Keller/Ohmstede
+ 2191: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 2192: -- Erstell-Datum   : 22.07.2016
+ 2193: --*******************************************************************
+ 2194: --
+ 2195:    ALTER TABLE FINREP_2801.STBPE_KONTOGRUPPE_T01 ADD CONSTRAINT
+ 2196:     STBPE_KONTOGRUPPE_T01P PRIMARY KEY
+ 2197:     (RZBK,
+ 2198:      DAT_STICHTAG,
+ 2199:      NR_IN_GLIEDERUNG,
+ 2200:      ID_GESCHAEFT,
+ 2201:      SL_ART_KONTOGRUPPE) USING INDEX FINREP_2801.STBPE_KONTOGRUPPE_I0101;
+ 2202: --// constraint STBPE_KREDITZUSAGE_T01 ******************************
+ 2203: -- Kurzbezeichnung : FinrepZL
+ 2204: -- Entw/Modellierer: Keller/Ohmstede
+ 2205: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 2206: -- Erstell-Datum   : 22.07.2016
+ 2207: --*******************************************************************
+ 2208: --
+ 2209:    ALTER TABLE FINREP_2801.STBPE_KREDITZUSAGE_T01 ADD
+ 2210:     CONSTRAINT STBPE_KREDITZUSAGE_T01P PRIMARY KEY
+ 2211:     (RZBK,
+ 2212:      DAT_STICHTAG,
+ 2213:      NR_IN_GLIEDERUNG,
+ 2214:      ID_GESCHAEFT,
+ 2215:      ID_ZUSAGE) USING INDEX FINREP_2801.STBPE_KREDITZUSAGE_I0101;
+ 2216: --// constraint STBPE_MANDANT_T01 ***********************************
+ 2217: -- Kurzbezeichnung : FinrepZL
+ 2218: -- Entw/Modellierer: Keller/Ohmstede
+ 2219: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 2220: -- Erstell-Datum   : 22.07.2016
+ 2221: --*******************************************************************
+ 2222: --
+ 2223:    ALTER TABLE FINREP_2801.STBPE_MANDANT_T01 ADD CONSTRAINT
+ 2224:     STBPE_MANDANT_T01P PRIMARY KEY
+ 2225:     (RZBK,
+ 2226:      DAT_STICHTAG,
+ 2227:      NR_IN_GLIEDERUNG) USING INDEX FINREP_2801.STBPE_MANDANT_I0101;
+ 2228: --// constraint STBPE_PERSON_T01 ************************************
+ 2229: -- Kurzbezeichnung : FinrepZL
+ 2230: -- Entw/Modellierer: Keller/Ohmstede
+ 2231: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 2232: -- Erstell-Datum   : 22.07.2016
+ 2233: --*******************************************************************
+ 2234: --
+ 2235:    ALTER TABLE FINREP_2801.STBPE_PERSON_T01 ADD CONSTRAINT
+ 2236:     STBPE_PERSON_T01P PRIMARY KEY
+ 2237:     (RZBK,
+ 2238:      DAT_STICHTAG,
+ 2239:      NR_IN_GLIEDERUNG,
+ 2240:      NR_PERSON) USING INDEX FINREP_2801.STBPE_PERSON_I0101;
+ 2241: --// constraint STBPE_PERSON_UNREGELMAES_T01 ************************
+ 2242: -- Kurzbezeichnung : Finrep ZL
+ 2243: -- Entw/Modellierer: Sabine Keller / Elke Ohmstede
+ 2244: -- DBA-EW          : Jürgen Denkler
+ 2245: -- Erstell-Datum   : 12.12.2016
+ 2246: --*******************************************************************
+ 2247: --
+ 2248:    ALTER TABLE FINREP_2801.STBPE_PERSON_UNREGELMAES_T01 ADD
+ 2249:     CONSTRAINT STBPE_PERSON_UNREGELMAES_T01P PRIMARY KEY
+ 2250:     (RZBK,
+ 2251:      NR_IN_GLIEDERUNG,
+ 2252:      NR_PERSON,
+ 2253:      DAT_BEGINN,
+ 2254:      SL_TYP_UNREGELMAESSIG) USING INDEX
+ 2255:       FINREP_2801.STBPE_PERSON_UNREGELMAES_I0101;
+ 2256: --// constraint STBPE_SICHERHEIT_T01 ********************************
+ 2257: -- Kurzbezeichnung : FinrepZL
+ 2258: -- Entw/Modellierer: Keller/Ohmstede
+ 2259: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 2260: -- Erstell-Datum   : 22.07.2016
+ 2261: --*******************************************************************
+ 2262: --
+ 2263:    ALTER TABLE FINREP_2801.STBPE_SICHERHEIT_T01 ADD CONSTRAINT
+ 2264:     STBPE_SICHERHEIT_T01P PRIMARY KEY
+ 2265:     (RZBK,
+ 2266:      DAT_STICHTAG,
+ 2267:      NR_IN_GLIEDERUNG,
+ 2268:      NR_SICHERHEIT) USING INDEX FINREP_2801.STBPE_SICHERHEIT_I0101;
+ 2269: --// constraint STBPE_VERTSICHERHEIT_T01 ****************************
+ 2270: -- Kurzbezeichnung : FinrepZL
+ 2271: -- Entw/Modellierer: Keller/Ohmstede
+ 2272: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 2273: -- Erstell-Datum   : 22.07.2016
+ 2274: --*******************************************************************
+ 2275: --
+ 2276:    ALTER TABLE FINREP_2801.STBPE_VERTSICHERHEIT_T01 ADD
+ 2277:     CONSTRAINT STBPE_VERTSICHERHEIT_T01P PRIMARY KEY
+ 2278:     (RZBK,
+ 2279:      DAT_STICHTAG,
+ 2280:      NR_IN_GLIEDERUNG,
+ 2281:      NR_SICHERHEIT,
+ 2282:      RZBK1,
+ 2283:      DAT_STICHTAG1,
+ 2284:      NR_IN_GLIEDERUNG1,
+ 2285:      ID_GESCHAEFT) USING INDEX FINREP_2801.STBPE_VERTSICHERHEIT_I0101;
+ 2286: --// constraint STBPE_WP_STAMM_T01 **********************************
+ 2287: -- Kurzbezeichnung : FinrepZL
+ 2288: -- Entw/Modellierer: Keller/Ohmstede
+ 2289: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 2290: -- Erstell-Datum   : 22.07.2016
+ 2291: --*******************************************************************
+ 2292: --
+ 2293:    ALTER TABLE FINREP_2801.STBPE_WP_STAMM_T01 ADD CONSTRAINT
+ 2294:     STBPE_WP_STAMM_T01P PRIMARY KEY
+ 2295:     (RZBK,
+ 2296:      DAT_STICHTAG,
+ 2297:      NR_IN_GLIEDERUNG,
+ 2298:      NR_ISIN) USING INDEX FINREP_2801.STBPE_WP_STAMM_I0101;
+ 2299: --// constraint STBPE_FEHLERATTRIBUT_T01 ****************************
+ 2300: -- Kurzbezeichnung : FinrepZL
+ 2301: -- Entw/Modellierer: Keller/Ohmstede
+ 2302: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 2303: -- Erstell-Datum   : 22.07.2016
+ 2304: --*******************************************************************
+ 2305: --
+ 2306:    ALTER TABLE FINREP_2801.STBPE_FEHLERATTRIBUT_T01 ADD
+ 2307:     CONSTRAINT STBPE_FEHLERATTRIBUT_T01F1 FOREIGN KEY
+ 2308:     (RZBK,
+ 2309:      DAT_STICHTAG,
+ 2310:      NR_IN_GLIEDERUNG,
+ 2311:      TXT_OID)
+ 2312:     REFERENCES FINREP_2801.STBPE_FEHLERPROTOKOLL_T01
+ 2313:     (RZBK,
+ 2314:      DAT_STICHTAG,
+ 2315:      NR_IN_GLIEDERUNG,
+ 2316:      TXT_OID);
+ 2317: --// constraint STBPE_GESCHAEFT_ABG_T01 *****************************
+ 2318: -- Kurzbezeichnung : FinrepZL
+ 2319: -- Entw/Modellierer: Keller/Ohmstede
+ 2320: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 2321: -- Erstell-Datum   : 22.07.2016
+ 2322: --*******************************************************************
+ 2323: --
+ 2324:    ALTER TABLE FINREP_2801.STBPE_GESCHAEFT_ABG_T01 ADD
+ 2325:     CONSTRAINT STBPE_GESCHAEFT_ABG_T01F1 FOREIGN KEY
+ 2326:     (RZBK,
+ 2327:      DAT_STICHTAG,
+ 2328:      NR_IN_GLIEDERUNG,
+ 2329:      ID_GESCHAEFT)
+ 2330:     REFERENCES FINREP_2801.STBPE_GESCHAEFT_STAMM_T01
+ 2331:     (RZBK,
+ 2332:      DAT_STICHTAG,
+ 2333:      NR_IN_GLIEDERUNG,
+ 2334:      ID_GESCHAEFT);
+ 2335: --// constraint STBPE_GESCHAEFT_DERIVAT_T01 *************************
+ 2336: -- Kurzbezeichnung : FinrepZL
+ 2337: -- Entw/Modellierer: Keller/Ohmstede
+ 2338: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 2339: -- Erstell-Datum   : 22.07.2016
+ 2340: --*******************************************************************
+ 2341: --
+ 2342:    ALTER TABLE FINREP_2801.STBPE_GESCHAEFT_DERIVAT_T01 ADD
+ 2343:     CONSTRAINT STBPE_GESCHAEFT_DERIVAT_T01F1 FOREIGN KEY
+ 2344:     (RZBK,
+ 2345:      DAT_STICHTAG,
+ 2346:      NR_IN_GLIEDERUNG,
+ 2347:      ID_GESCHAEFT)
+ 2348:     REFERENCES FINREP_2801.STBPE_GESCHAEFT_STAMM_T01
+ 2349:     (RZBK,
+ 2350:      DAT_STICHTAG,
+ 2351:      NR_IN_GLIEDERUNG,
+ 2352:      ID_GESCHAEFT);
+ 2353: --// constraint STBPE_GESCHAEFT_STAMM_T01 ***************************
+ 2354: -- Kurzbezeichnung : FinrepZL
+ 2355: -- Entw/Modellierer: Keller/Ohmstede
+ 2356: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 2357: -- Erstell-Datum   : 22.07.2016
+ 2358: --*******************************************************************
+ 2359: --
+ 2360:    ALTER TABLE FINREP_2801.STBPE_GESCHAEFT_STAMM_T01 ADD
+ 2361:     CONSTRAINT STBPE_GESCHAEFT_STAMM_T01F1 FOREIGN KEY
+ 2362:     (RZBK1,
+ 2363:      DAT_STICHTAG1,
+ 2364:      NR_IN_GLIEDERUNG1,
+ 2365:      NR_PERSON)
+ 2366:     REFERENCES FINREP_2801.STBPE_PERSON_T01
+ 2367:     (RZBK,
+ 2368:      DAT_STICHTAG,
+ 2369:      NR_IN_GLIEDERUNG,
+ 2370:      NR_PERSON);
+ 2371: --// constraint STBPE_GESCHAEFT_WP_T01 ******************************
+ 2372: -- Kurzbezeichnung : FinrepZL
+ 2373: -- Entw/Modellierer: Keller/Ohmstede
+ 2374: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 2375: -- Erstell-Datum   : 22.07.2016
+ 2376: --*******************************************************************
+ 2377: --
+ 2378:    ALTER TABLE FINREP_2801.STBPE_GESCHAEFT_WP_T01 ADD
+ 2379:     CONSTRAINT STBPE_GESCHAEFT_WP_T01F1 FOREIGN KEY
+ 2380:     (RZBK,
+ 2381:      DAT_STICHTAG,
+ 2382:      NR_IN_GLIEDERUNG,
+ 2383:      ID_GESCHAEFT)
+ 2384:     REFERENCES FINREP_2801.STBPE_GESCHAEFT_STAMM_T01
+ 2385:     (RZBK,
+ 2386:      DAT_STICHTAG,
+ 2387:      NR_IN_GLIEDERUNG,
+ 2388:      ID_GESCHAEFT);
+ 2389: --// constraint STBPE_KONTOGRUPPE_T01 *******************************
+ 2390: -- Kurzbezeichnung : FinrepZL
+ 2391: -- Entw/Modellierer: Keller/Ohmstede
+ 2392: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 2393: -- Erstell-Datum   : 22.07.2016
+ 2394: --*******************************************************************
+ 2395: --
+ 2396:    ALTER TABLE FINREP_2801.STBPE_KONTOGRUPPE_T01 ADD CONSTRAINT
+ 2397:     STBPE_KONTOGRUPPE_T01F1 FOREIGN KEY
+ 2398:     (RZBK,
+ 2399:      DAT_STICHTAG,
+ 2400:      NR_IN_GLIEDERUNG,
+ 2401:      ID_GESCHAEFT)
+ 2402:     REFERENCES FINREP_2801.STBPE_GESCHAEFT_STAMM_T01
+ 2403:     (RZBK,
+ 2404:      DAT_STICHTAG,
+ 2405:      NR_IN_GLIEDERUNG,
+ 2406:      ID_GESCHAEFT);
+ 2407: --// constraint STBPE_KONTOGRUPPE_T01 *******************************
+ 2408: -- Kurzbezeichnung : FinrepZL
+ 2409: -- Entw/Modellierer: Keller/Ohmstede
+ 2410: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 2411: -- Erstell-Datum   : 22.07.2016
+ 2412: --*******************************************************************
+ 2413: --
+ 2414:    ALTER TABLE FINREP_2801.STBPE_KONTOGRUPPE_T01 ADD CONSTRAINT
+ 2415:     STBPE_KONTOGRUPPE_T01F2 FOREIGN KEY
+ 2416:     (RZBK1,
+ 2417:      DAT_STICHTAG1,
+ 2418:      NR_IN_GLIEDERUNG1,
+ 2419:      ID_GESCHAEFT1)
+ 2420:     REFERENCES FINREP_2801.STBPE_GESCHAEFT_STAMM_T01
+ 2421:     (RZBK,
+ 2422:      DAT_STICHTAG,
+ 2423:      NR_IN_GLIEDERUNG,
+ 2424:      ID_GESCHAEFT);
+ 2425: --// constraint STBPE_KREDITZUSAGE_T01 ******************************
+ 2426: -- Kurzbezeichnung : FinrepZL
+ 2427: -- Entw/Modellierer: Keller/Ohmstede
+ 2428: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 2429: -- Erstell-Datum   : 22.07.2016
+ 2430: --*******************************************************************
+ 2431: --
+ 2432:    ALTER TABLE FINREP_2801.STBPE_KREDITZUSAGE_T01 ADD
+ 2433:     CONSTRAINT STBPE_KREDITZUSAGE_T01F1 FOREIGN KEY
+ 2434:     (RZBK,
+ 2435:      DAT_STICHTAG,
+ 2436:      NR_IN_GLIEDERUNG,
+ 2437:      ID_GESCHAEFT)
+ 2438:     REFERENCES FINREP_2801.STBPE_GESCHAEFT_STAMM_T01
+ 2439:     (RZBK,
+ 2440:      DAT_STICHTAG,
+ 2441:      NR_IN_GLIEDERUNG,
+ 2442:      ID_GESCHAEFT);
+ 2443: --// constraint STBPE_VERTSICHERHEIT_T01 ****************************
+ 2444: -- Kurzbezeichnung : FinrepZL
+ 2445: -- Entw/Modellierer: Keller/Ohmstede
+ 2446: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 2447: -- Erstell-Datum   : 22.07.2016
+ 2448: --*******************************************************************
+ 2449: --
+ 2450:    ALTER TABLE FINREP_2801.STBPE_VERTSICHERHEIT_T01 ADD
+ 2451:     CONSTRAINT STBPE_VERTSICHERHEIT_T01F1 FOREIGN KEY
+ 2452:     (RZBK,
+ 2453:      DAT_STICHTAG,
+ 2454:      NR_IN_GLIEDERUNG,
+ 2455:      NR_SICHERHEIT)
+ 2456:     REFERENCES FINREP_2801.STBPE_SICHERHEIT_T01
+ 2457:     (RZBK,
+ 2458:      DAT_STICHTAG,
+ 2459:      NR_IN_GLIEDERUNG,
+ 2460:      NR_SICHERHEIT);
+ 2461: --// constraint STBPE_VERTSICHERHEIT_T01 ****************************
+ 2462: -- Kurzbezeichnung : FinrepZL
+ 2463: -- Entw/Modellierer: Keller/Ohmstede
+ 2464: -- DBA-EW          : Michael Pollak, BQFBDB (xck2030)
+ 2465: -- Erstell-Datum   : 22.07.2016
+ 2466: --*******************************************************************
+ 2467: --
+ 2468:    ALTER TABLE FINREP_2801.STBPE_VERTSICHERHEIT_T01 ADD
+ 2469:     CONSTRAINT STBPE_VERTSICHERHEIT_T01F2 FOREIGN KEY
+ 2470:     (RZBK1,
+ 2471:      DAT_STICHTAG1,
+ 2472:      NR_IN_GLIEDERUNG1,
+ 2473:      ID_GESCHAEFT)
+ 2474:     REFERENCES FINREP_2801.STBPE_GESCHAEFT_STAMM_T01
+ 2475:     (RZBK,
+ 2476:      DAT_STICHTAG,
+ 2477:      NR_IN_GLIEDERUNG,
+ 2478:      ID_GESCHAEFT);
+ 2479: --// constraint STBPE_GESCHAEFT_ABRECHNG_T01 ***********************
+ 2480: -- Kurzbezeichnung : FinrepZL
+ 2481: -- Entw/Modellierer: Mersmann/Ohmstede
+ 2482: -- DBA-EW          : Jürgen Denkler
+ 2483: -- Erstell-Datum   : 25.11.2020
+ 2484: --*******************************************************************
+ 2485: --
+ 2486:    ALTER TABLE FINREP_2801.STBPE_GESCHAEFT_ABRECHNG_T01 ADD 
+ 2487:     CONSTRAINT STBPE_GESCHAEFT_ABRECHNG_T01P PRIMARY KEY
+ 2488: 	(RZBK,
+ 2489: 	 DAT_STICHTAG,
+ 2490: 	 NR_IN_GLIEDERUNG,
+ 2491: 	 ID_GESCHAEFT,
+ 2492: 	 SL_ZINSGEBUEHRENTYP,
+ 2493: 	 NR_LFD) USING INDEX FINREP_2801.STBPE_GESCHAEFT_ABRECHNG_I0101;
+ 2494: --// constraint STBPE_GESCHAEFT_ABRECHNG_T01 ************************
+ 2495: -- Kurzbezeichnung : FinrepZL
+ 2496: -- Entw/Modellierer: Mersmann/Ohmstede
+ 2497: -- DBA-EW          : Jürgen Denkler
+ 2498: -- Erstell-Datum   : 25.11.2020
+ 2499: --*******************************************************************
+ 2500: --
+ 2501:     ALTER TABLE FINREP_2801.STBPE_GESCHAEFT_ABRECHNG_T01 ADD 
+ 2502:      CONSTRAINT STBPE_GESCHAEFT_ABRECHNG_T01F1 FOREIGN KEY
+ 2503: 	(RZBK,
+ 2504: 	 DAT_STICHTAG,
+ 2505: 	 NR_IN_GLIEDERUNG,
+ 2506: 	 ID_GESCHAEFT)
+ 2507: 	REFERENCES FINREP_2801.STBPE_GESCHAEFT_STAMM_T01
+ 2508: 	(RZBK,
+ 2509: 	 DAT_STICHTAG,
+ 2510: 	 NR_IN_GLIEDERUNG,
+ 2511: 	 ID_GESCHAEFT);
