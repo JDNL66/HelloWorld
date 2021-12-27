@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import sys
 
-# Hauptprogramm / Main  / DNL in Githup
+# Hauptprogramm / Main  / DNL in Github
 def main():
     print("hallo Version in VSCode geändert noch eine Version  ")
     if len(sys.argv) < 2:
